@@ -26,7 +26,7 @@ A guide in installing and running these **Python-based Burp extensions** (also c
 3. Under **Python Environment**, click **Select file...**
 4. Choose the downloaded `jython-standalone-*.jar` file.
 
-## ⚙️ Step 3: Configure Jython in Burp
+### ⚙️ Step 3: Configure Jython in Burp
 
 1. Go to the **"Extender"** tab.
 2. Click the **"Options"** sub-tab.
@@ -72,7 +72,7 @@ from burp import IBurpExtender
 class BurpExtender(IBurpExtender):
     def registerExtenderCallbacks(self, callbacks):
         # Set extension name shown in Burp
-        callbacks.setExtensionName("Hello World Extension")
+        callbacks.setExtensionName("Python-Based Extension")
 
         # Simple message to indicate successful loading
         print("Python-Based BurpSuite Extension!")
