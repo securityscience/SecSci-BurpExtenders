@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci NMap SSL Scanner v1.250430 - April 2025
+# Sec-Sci NMap SSL Scanner v1.250501 - April 2025
 # ---------------------------------------
-# Tool:      Sec-Sci AutoPT v1.250430
+# Tool:      Sec-Sci NMAP SSL Scanner v1.250501
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -10,7 +10,6 @@
 
 from burp import IBurpExtender, IHttpListener, IScanIssue
 import subprocess
-import re
 
 hosts = []
 
@@ -42,7 +41,9 @@ class BurpExtender(IBurpExtender, IHttpListener):
 
         if host not in hosts:
             hosts.append(host)
-            nmap_cmd = ["nmap", "--script", "ssl-enum-ciphers", "-p", str(port), host]
+            # nmap_cmd = ["nmap", "--script", "ssl-enum-ciphers", "-p", str(port), host]
+            nmap_cmd = ["nmap", "--script", "ssl-*", "-p", str(port), host]
+
             # print("[INFO] Running Nmap command: {}".format(nmap_cmd))
 
             try:
@@ -70,18 +71,14 @@ class BurpExtender(IBurpExtender, IHttpListener):
                 "No support for TLSv1.2 or higher"
             ]
 
-            # Weak Certificate
-            weak_cert_indicators = [
-                "Signature algorithm: md5WithRSAEncryption",   # MD5 signatures
-                "Signature algorithm: sha1WithRSAEncryption",  # SHA-1 deprecated
-                "Self-signed certificate",
-                "Certificate expired",
-                "Key size: 1024 bits",                         # Too small
-                "Public Key Algorithm: RSA (1024 bits)",
-                "Subject CN does not match domain"
-            ]
-
             ssl_issues = [
+                ("md5WithRSAEncryption", "Signature algorithm: md5WithRSAEncryption"),  # MD5 signatures
+                ("sha1WithRSAEncryption", "Signature algorithm: sha1WithRSAEncryption"),  # SHA-1 deprecated
+                ("Self-signed", "Self-signed certificate"),
+                ("expired", "Certificate expired"),
+                ("size: 1024 bits", "Key size: 1024 bits"),  # Too small
+                ("Algorithm: RSA (1024 bits)", "Public Key Algorithm: RSA (1024 bits)"),
+                ("not match domain", "Subject CN does not match domain"),
                 ("SSLv2", "Deprecated protocol detected: SSLv2"),
                 ("SSLv3", "Deprecated protocol detected: SSLv23"),
                 ("TLSv1.0", "Deprecated protocol detected: TLSv1.0"),
@@ -90,16 +87,16 @@ class BurpExtender(IBurpExtender, IHttpListener):
                 ("lower strength", "Key exchange (dh 1024) of lower strength than certificate key"),
                 ("BEAST", "Vulnerable to BEAST attack"),
                 ("POODLE", "Vulnerable to POODLE attack"),
-                ("RC4", "Weak cipher suites detected: RC4"),  # RC4 is considered insecure / Broken stream cipher (insecure bias).
-                ("NULL", "Weak cipher suites detected: NULL"),  # No encryption at all
-                ("EXP", "Weak cipher suites detected: EXP"),  # Export-grade ciphers (e.g., 40/56-bit)
-                ("DES", "Weak cipher suites detected: DES"),  # Obsolete, easily broken
-                ("3DES", "Weak cipher suites detected: 3DES"),  # Vulnerable to SWEET32 (block size 64-bit)
-                ("MD5", "Weak cipher suites detected: MD5"),  # Weak hashing algorithm
-                ("SEED", "Weak cipher suites detected: SEED"),  # Not widely trusted; included for strictness
-                ("IDEA", "Weak cipher suites detected: IDEA"),  # Not widely trusted; included for strictness
-                ("CAMELLIA", "Weak cipher suites detected: CAMELLIA"),  # Not widely trusted; included for strictness
-                ("CBC", "Weak cipher suites detected: CBC"),  # Can be vulnerable to BEAST/Lucky13 depending on implementation
+                ("WITH_RC4", "Weak cipher suites detected: RC4"),  # RC4 is considered insecure / Broken stream cipher (insecure bias).
+                ("WITH_NULL", "Weak cipher suites detected: NULL"),  # No encryption at all
+                ("_EXP", "Weak cipher suites detected: EXP"),  # Export-grade ciphers (e.g., 40/56-bit)
+                ("WITH_DES", "Weak cipher suites detected: DES"),  # Obsolete, easily broken
+                ("WITH_3DES", "Weak cipher suites detected: 3DES"),  # Vulnerable to SWEET32 (block size 64-bit)
+                ("_MD5", "Weak cipher suites detected: MD5"),  # Weak hashing algorithm
+                ("WITH_SEED", "Weak cipher suites detected: SEED"),  # Not widely trusted; included for strictness
+                ("WITH_IDEA", "Weak cipher suites detected: IDEA"),  # Not widely trusted; included for strictness
+                ("WITH_CAMELLIA", "Weak cipher suites detected: CAMELLIA"),  # Not widely trusted; included for strictness
+                ("CBC_SHA", "Weak cipher suites detected: CBC"),  # Can be vulnerable to BEAST/Lucky13 depending on implementation
                 ("CRIME", "Weak cipher suites detected: CRIME")
             ]
 
@@ -114,7 +111,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
                 The server is configured to support weak SSL/TLS cipher suites, which could allow an attacker to decrypt 
                 or tamper with encrypted traffic through methods such as cryptographic downgrade attacks, brute force,
                 or protocol vulnerabilities.<br><br>
-                During SSL/TLS negotiation with the server, the following weak cipher suites were found to be supported:<br><br>
+                During SSL/TLS negotiation with the server, the following weak cipher suites were found to be supported
+                and indication of weak certificate:<br><br>
                 """ + "<br>".join(issues) + """<br><br>
                 Use of these cipher suites significantly reduces the strength of encryption and may expose sensitive
                 data to interception or modification. SSL Scanner initiated a TLS handshake and observed these weak
