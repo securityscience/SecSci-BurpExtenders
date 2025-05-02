@@ -1,4 +1,4 @@
-## 🛡️ Nmap SSL Scanner
+## 🛡️ NMAP SSL Scanner
 
 This BurpSuite extension integrates `nmap` SSL scanning directly into BurpSuite using Python.
 It allows security testers to quickly identify SSL-related vulnerabilities like weak ciphers,
@@ -90,6 +90,8 @@ If encounter bugs or want to request features:
 
 
 ## 🤖 Example Output
+
+📋[ Click here](nmap_ssl_scanner_report.html) to view sample exported report from BurpSuite.
 
 ```
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-01 22:34 Eastern Daylight Time
