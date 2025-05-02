@@ -71,8 +71,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         ("WITH_SEED", "Weak cipher suites detected: SEED"),  # Not widely trusted; included for strictness
         ("WITH_IDEA", "Weak cipher suites detected: IDEA"),  # Not widely trusted; included for strictness
         ("WITH_CAMELLIA", "Weak cipher suites detected: CAMELLIA"),  # Not widely trusted; included for strictness
-        ("CBC_SHA", "Weak cipher suites detected: CBC"),
-        # Can be vulnerable to BEAST/Lucky13 depending on implementation
+        ("CBC_SHA", "Weak cipher suites detected: CBC"),  # Can be vulnerable to BEAST/Lucky13 depending on implementation
         ("CRIME", "Weak cipher suites detected: CRIME")
     ]
 
