@@ -76,6 +76,35 @@ Once the extension is loaded in BurpSuite:
 | No scan output shown             | Check **Extender → Output**, or use `print`/`callbacks.printOutput()` |
 
 
+
+## 🔐 **SSL/TLS Test Domains**
+
+These subdomains are intentionally configured with specific SSL/TLS issues to aid in testing and validation:
+
+### **🔑 Certificate Issues**
+
+- `https://expired.badssl.com` – Expired certificate
+- `https://self-signed.badssl.com` – Self-signed certificate
+- `https://untrusted-root.badssl.com` – Untrusted root certificate
+- `https://revoked.badssl.com` – Revoked certificate
+- `https://pinning-test.badssl.com` – Certificate pinning
+
+### **🔐 Protocol and Cipher Weaknesses**
+
+- `https://tls-v1-0.badssl.com` – TLS 1.0 support
+- `https://tls-v1-1.badssl.com` – TLS 1.1 support
+- `https://3des.badssl.com` – 3DES cipher support
+- `https://rc4.badssl.com` – RC4 cipher support
+- `https://cbc.badssl.com` – CBC cipher support
+- `https://dh480.badssl.com` – Weak Diffie-Hellman parameters
+
+### **🧪 Other Test Cases**
+
+- `https://mixed.badssl.com` – Mixed content (HTTP and HTTPS)
+- `https://sha1-intermediate.badssl.com` – SHA-1 intermediate certificate
+- `https://long-extended-subdomain-name-containing-many-letters-and-dashes.badssl.com` – Test for handling long subdomain names
+
+
 ## 📜 License
 
 [GNU GPL 3.0](../LICENSE)
