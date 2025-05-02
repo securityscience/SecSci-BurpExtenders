@@ -22,7 +22,7 @@ Before installing the extension, ensure the following:
 | BurpSuite       | ✅        | Community or Professional version                                                        |
 | Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`) |
 | Python (Jython) | ✅        | Must use Python 2.7 syntax                                                               |
-| Nmap            | ✅        | Ensure `nmap` is installed and added to PATH                                             |
+| Nmap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
 
 
 ## 📥 Installation Steps
