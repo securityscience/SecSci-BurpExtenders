@@ -1,28 +1,106 @@
 [
-  ["md5WithRSAEncryption", "Signature algorithm: md5WithRSAEncryption"],
-  ["sha1WithRSAEncryption", "Signature algorithm: sha1WithRSAEncryption"],
-  ["Self-signed", "Self-signed certificate"],
-  ["expired", "Certificate expired"],
-  ["size: 1024 bits", "Key size: 1024 bits"],
-  ["Algorithm: RSA (1024 bits)", "Public Key Algorithm: RSA (1024 bits)"],
-  ["not match domain", "Subject CN does not match domain"],
-  ["SSLv2", "Deprecated protocol detected: SSLv2"],
-  ["SSLv3", "Deprecated protocol detected: SSLv23"],
-  ["TLSv1.0", "Deprecated protocol detected: TLSv1.0"],
-  ["TLSv1.1", "Deprecated protocol detected: TLSv1.1"],
-  ["SWEET32", "64-bit block cipher 3DES vulnerable to SWEET32 attack"],
-  ["lower strength", "Key exchange (dh 1024) of lower strength than certificate key"],
-  ["BEAST", "Vulnerable to BEAST attack"],
-  ["POODLE", "Vulnerable to POODLE attack"],
-  ["WITH_RC4", "Weak cipher suites detected: RC4"],
-  ["WITH_NULL", "Weak cipher suites detected: NULL"],
-  ["_EXP", "Weak cipher suites detected: EXP"],
-  ["WITH_DES", "Weak cipher suites detected: DES"],
-  ["WITH_3DES", "Weak cipher suites detected: 3DES"],
-  ["_MD5", "Weak cipher suites detected: MD5"],
-  ["WITH_SEED", "Weak cipher suites detected: SEED"],
-  ["WITH_IDEA", "Weak cipher suites detected: IDEA"],
-  ["WITH_CAMELLIA", "Weak cipher suites detected: CAMELLIA"],
-  ["CBC_SHA", "Weak cipher suites detected: CBC"],
-  ["CRIME", "Weak cipher suites detected: CRIME"]
+    [
+        "md5WithRSAEncryption", 
+        "Signature algorithm: md5WithRSAEncryption"
+    ], 
+    [
+        "sha1WithRSAEncryption", 
+        "Signature algorithm: sha1WithRSAEncryption"
+    ], 
+    [
+        "Self-signed", 
+        "Self-signed certificate"
+    ], 
+    [
+        "expired", 
+        "Certificate expired"
+    ], 
+    [
+        "size: 1024 bits", 
+        "Key size: 1024 bits"
+    ], 
+    [
+        "Algorithm: RSA (1024 bits)", 
+        "Public Key Algorithm: RSA (1024 bits)"
+    ], 
+    [
+        "not match domain", 
+        "Subject CN does not match domain"
+    ], 
+    [
+        "SSLv2", 
+        "Deprecated protocol detected: SSLv2"
+    ], 
+    [
+        "SSLv3", 
+        "Deprecated protocol detected: SSLv23"
+    ], 
+    [
+        "TLSv1.0", 
+        "Deprecated protocol detected: TLSv1.0"
+    ], 
+    [
+        "TLSv1.1", 
+        "Deprecated protocol detected: TLSv1.1"
+    ], 
+    [
+        "SWEET32", 
+        "64-bit block cipher 3DES vulnerable to SWEET32 attack"
+    ], 
+    [
+        "lower strength", 
+        "Key exchange (dh 1024) of lower strength than certificate key"
+    ], 
+    [
+        "BEAST", 
+        "Vulnerable to BEAST attack"
+    ], 
+    [
+        "POODLE", 
+        "Vulnerable to POODLE attack"
+    ], 
+    [
+        "WITH_RC4", 
+        "Weak cipher suites detected: RC4"
+    ], 
+    [
+        "WITH_NULL", 
+        "Weak cipher suites detected: NULL"
+    ], 
+    [
+        "_EXP", 
+        "Weak cipher suites detected: EXP"
+    ], 
+    [
+        "WITH_DES", 
+        "Weak cipher suites detected: DES"
+    ], 
+    [
+        "WITH_3DES", 
+        "Weak cipher suites detected: 3DES"
+    ], 
+    [
+        "_MD5", 
+        "Weak cipher suites detected: MD5"
+    ], 
+    [
+        "WITH_SEED", 
+        "Weak cipher suites detected: SEED"
+    ], 
+    [
+        "WITH_IDEA", 
+        "Weak cipher suites detected: IDEA"
+    ], 
+    [
+        "WITH_CAMELLIA", 
+        "Weak cipher suites detected: CAMELLIA"
+    ], 
+    [
+        "CBC_SHA", 
+        "Weak cipher suites detected: CBC"
+    ], 
+    [
+        "CRIME", 
+        "Weak cipher suites detected: CRIME"
+    ]
 ]
