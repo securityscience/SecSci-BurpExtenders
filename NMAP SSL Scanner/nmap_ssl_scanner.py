@@ -11,8 +11,41 @@
 from burp import IBurpExtender, IHttpListener, IScanIssue
 import subprocess
 import threading
+import json
+import urllib2
+import os
 
 hosts = []
+
+
+def fetch_latest_issues(remote_ssl_issues_url, local_file="ssl_issues.json"):
+    try:
+        request = urllib2.Request(remote_ssl_issues_url)
+        response = urllib2.urlopen(request, timeout=5)
+        content = response.read()
+        data = json.loads(content)
+
+        # Write the new SSL Issues list to local file
+        with open(local_file, 'w') as f:
+            json.dump(data, f, indent=4)
+
+        print("[INFO] Updated SSL Issues!")
+        return data
+    except Exception as e:
+        print("[INFO] Failed to update SSL Issues from Remote: %s" % str(e))
+
+    # Fallback to local file
+    return load_ssl_issues(local_file)
+
+
+def load_ssl_issues(local_file="ssl_issues.json"):
+    if os.path.exists(local_file):
+        try:
+            with open(local_file, 'r') as f:
+                return json.load(f)
+        except Exception as e:
+            print("[ERROR] Failed to load local issues file: %s" % str(e))
+    return []  # Fallback to empty list if both remote and local fail
 
 
 def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbacks):
@@ -32,48 +65,8 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         print("[ERROR] Nmap scan failed: {}".format(e))
         return None
 
-    known_vulnerabilities = [
-        "Anonymous cipher suites supported",
-        "Low strength cipher suites supported",
-        "No support for TLSv1.2 or higher",
-        "Insecure renegotiation supported",
-        "Client-initiated renegotiation supported",
-        "Uses a block cipher in CBC mode with TLS 1.0 or earlier",
-        "Certificate uses weak signature algorithm",
-        "Key exchange (dh 1024) of lower strength than certificate key"
-        "Anonymous cipher suites supported (no authentication)",
-        "Low strength cipher suites supported",
-        "No support for TLSv1.2 or higher"
-    ]
-
-    ssl_issues = [
-        ("md5WithRSAEncryption", "Signature algorithm: md5WithRSAEncryption"),  # MD5 signatures
-        ("sha1WithRSAEncryption", "Signature algorithm: sha1WithRSAEncryption"),  # SHA-1 deprecated
-        ("Self-signed", "Self-signed certificate"),
-        ("expired", "Certificate expired"),
-        ("size: 1024 bits", "Key size: 1024 bits"),  # Too small
-        ("Algorithm: RSA (1024 bits)", "Public Key Algorithm: RSA (1024 bits)"),
-        ("not match domain", "Subject CN does not match domain"),
-        ("SSLv2", "Deprecated protocol detected: SSLv2"),
-        ("SSLv3", "Deprecated protocol detected: SSLv23"),
-        ("TLSv1.0", "Deprecated protocol detected: TLSv1.0"),
-        ("TLSv1.1", "Deprecated protocol detected: TLSv1.1"),
-        ("SWEET32", "64-bit block cipher 3DES vulnerable to SWEET32 attack"),
-        ("lower strength", "Key exchange (dh 1024) of lower strength than certificate key"),
-        ("BEAST", "Vulnerable to BEAST attack"),
-        ("POODLE", "Vulnerable to POODLE attack"),
-        ("WITH_RC4", "Weak cipher suites detected: RC4"),  # RC4 is considered insecure / Broken stream cipher (insecure bias).
-        ("WITH_NULL", "Weak cipher suites detected: NULL"),  # No encryption at all
-        ("_EXP", "Weak cipher suites detected: EXP"),  # Export-grade ciphers (e.g., 40/56-bit)
-        ("WITH_DES", "Weak cipher suites detected: DES"),  # Obsolete, easily broken
-        ("WITH_3DES", "Weak cipher suites detected: 3DES"),  # Vulnerable to SWEET32 (block size 64-bit)
-        ("_MD5", "Weak cipher suites detected: MD5"),  # Weak hashing algorithm
-        ("WITH_SEED", "Weak cipher suites detected: SEED"),  # Not widely trusted; included for strictness
-        ("WITH_IDEA", "Weak cipher suites detected: IDEA"),  # Not widely trusted; included for strictness
-        ("WITH_CAMELLIA", "Weak cipher suites detected: CAMELLIA"),  # Not widely trusted; included for strictness
-        ("CBC_SHA", "Weak cipher suites detected: CBC"),  # Can be vulnerable to BEAST/Lucky13 depending on implementation
-        ("CRIME", "Weak cipher suites detected: CRIME")
-    ]
+    remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
+    ssl_issues = fetch_latest_issues(remote_ssl_issues_url)
 
     issues = []
 
