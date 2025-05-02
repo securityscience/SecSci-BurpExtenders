@@ -29,7 +29,7 @@ Before installing the extension, ensure the following:
 
 ### 1. Download the Jython Standalone JAR
 
-1. Go to [https://www.jython.org/download](https://www.jython.org/downloads)
+1. Go to [https://www.jython.org/download](https://www.jython.org/download)
 2. Download the **standalone jar** (e.g. `jython-standalone-2.7.4.jar`)
 3. Save the file, e.g., `jython-standalone-2.7.4.jar`, to a known location.
 
