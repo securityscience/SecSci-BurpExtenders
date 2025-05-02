@@ -110,7 +110,8 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                     - Prefer TLS 1.2 and 1.3; disable SSL 2.0, SSL 3.0, TLS 1.0, and TLS 1.1<br><br>
                     Ensure the final configuration is tested using tools such as:<br><br>
                     - <a href="https://www.ssllabs.com/ssltest/">SSL Labs SSL Test</a><br>
-                    - nmap --script ssl-enum-ciphers<br><br>
+                    - <a href="https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html">nmap --script ssl-enum-ciphers</a><br>
+                    - <a href="https://nmap.org/nsedoc/scripts/ssl-cert.html">nmap --script ssl-cert</a><br><br>                    
                     <b>References</b><br><br>
                     - <a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html">
                     OWASP: Transport Layer Protection Cheat Sheet</a><br>
