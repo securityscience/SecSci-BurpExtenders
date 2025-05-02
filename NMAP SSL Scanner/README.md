@@ -91,7 +91,7 @@ If encounter bugs or want to request features:
 
 ## 🤖 Example Output
 
-📋[ Click here](nmap_ssl_scanner_report.html) to view sample exported report from BurpSuite.
+📋[ Click here](nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
 
 ```
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-01 22:34 Eastern Daylight Time
