@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci NMap SSL Scanner v1.250501 - May 2025
+# Sec-Sci NMap SSL Scanner v1.250502 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci NMAP SSL Scanner v1.250501
+# Tool:      Sec-Sci NMAP SSL Scanner v1.250502
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
