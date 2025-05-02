@@ -161,8 +161,11 @@ class BurpExtender(IBurpExtender, IHttpListener):
         if protocol != "https" or not self._callbacks.isInScope(request_url):
             return None
 
-        if host not in hosts:
-            hosts.append(host)
+        target = host + ":" + str(port)
+
+        if target not in hosts:
+            hosts.append(target)
+            print(hosts)
             # threading.Thread(target=run_nmap_ssl_scan, args=(host, port)).start()
             thread = threading.Thread(target=run_nmap_ssl_scan,
                                       args=(host, port, httpService, request_url, messageInfo, self._callbacks))
