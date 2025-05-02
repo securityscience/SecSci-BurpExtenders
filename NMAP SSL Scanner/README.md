@@ -7,7 +7,7 @@ outdated protocols, and certificate issues from within the BurpSuite interface.
 
 ## 🚀 Features
 
-- 🔍 Automatically scans HTTPS targets using `nmap --script ssl-*`.
+- 🔍 Automatically scans HTTPS "In Scope" targets using `nmap --script ssl-*`.
 - 📄 Displays results inside BurpSuite Issues.
 - 📥 Integrates seamlessly with the Extender API.
 - 🧪 Works in both Community and Professional editions of BurpSuite.
@@ -29,8 +29,9 @@ Before installing the extension, ensure the following:
 
 ### 1. Download the Jython Standalone JAR
 
-Download from:  
-👉 [https://www.jython.org/download](https://www.jython.org/download)
+1. Go to [https://www.jython.org/download](https://www.jython.org/downloads)
+2. Download the **standalone jar** (e.g. `jython-standalone-2.7.4.jar`)
+3. Save the file, e.g., `jython-standalone-2.7.4.jar`, to a known location.
 
 ### 2. Enable Python Support in BurpSuite
 
@@ -51,18 +52,19 @@ Download from:
 
 If successful, the extension will show `Loaded` in the table.
 
+
 ## 🔧 Usage Instructions
 
-Once loaded:
+Once the extension is loaded in BurpSuite:
 
-- Right-click on any HTTPS request in **Target**, **Proxy**, or **Repeater**
-- Choose **"Scan with Nmap SSL Scanner"**
+- Make sure the target host is marked **In Scope** in the **Target** tab.
+- Visit an HTTPS page through **Proxy**, **Repeater**, or **Target**.
 - The extension will:
-  - Extract the host and port
-  - Run `nmap --script ssl-* -p <port> <host>`
-  - Display results in:
-    - **Extender → Output**
-    - Or a custom tab (if implemented)
+  - Detect in-scope HTTPS responses
+  - Automatically run:  
+    `nmap --script ssl-* -p <port> <host>`
+  - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.)
+  - Report issues directly to the **Scanner → Issues** tab as custom findings
 
 
 ## 🐞 Troubleshooting
