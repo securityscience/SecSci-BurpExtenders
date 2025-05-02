@@ -1,5 +1,5 @@
 # ---------------------------------------
-# Sec-Sci NMap SSL Scanner v1.250501 - April 2025
+# Sec-Sci NMap SSL Scanner v1.250501 - May 2025
 # ---------------------------------------
 # Tool:      Sec-Sci NMAP SSL Scanner v1.250501
 # Site:      www.security-science.com
@@ -62,8 +62,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         ("lower strength", "Key exchange (dh 1024) of lower strength than certificate key"),
         ("BEAST", "Vulnerable to BEAST attack"),
         ("POODLE", "Vulnerable to POODLE attack"),
-        ("WITH_RC4", "Weak cipher suites detected: RC4"),
-        # RC4 is considered insecure / Broken stream cipher (insecure bias).
+        ("WITH_RC4", "Weak cipher suites detected: RC4"),  # RC4 is considered insecure / Broken stream cipher (insecure bias).
         ("WITH_NULL", "Weak cipher suites detected: NULL"),  # No encryption at all
         ("_EXP", "Weak cipher suites detected: EXP"),  # Export-grade ciphers (e.g., 40/56-bit)
         ("WITH_DES", "Weak cipher suites detected: DES"),  # Obsolete, easily broken
