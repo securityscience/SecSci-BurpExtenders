@@ -53,7 +53,7 @@ Before installing these extensions, ensure the following:
    - **Extension Type**: Python
    - **Extension File**: `xBurp.py`
 5. Click **Next** → then **Finish**
-6. Repeat step 4 for `xReport.py`
+6. Repeat step 3 for `xReport.py`
 
 
 ## 🚀 Usage Instructions
