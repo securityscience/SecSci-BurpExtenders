@@ -18,9 +18,8 @@ import os
 hosts = []
 
 
-def fetch_latest_issues():
+def fetch_latest_issues(remote_ssl_issues_url):
     try:
-        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
         request = urllib2.Request(remote_ssl_issues_url)
         response = urllib2.urlopen(request, timeout=5)
         content = response.read()
@@ -137,7 +136,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
         callbacks.registerHttpListener(self)
 
         print("[*] SSL Weak Cipher Scanner extension loaded.")
-        fetch_latest_issues()
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
+        fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
