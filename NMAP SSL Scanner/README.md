@@ -116,10 +116,11 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 
 ## 🙋 Support
 
-If encounter bugs or want to request features:
+If encounter issues, bugs or want to request features:
 
 - Submit an [Issue](https://github.com/securityscience/SecSci-BurpExtenders/issues)
-- Or contact: [RnD@security-science.com](mailto:RnD@security-science.com)
+- Contact: [RnD@security-science.com](mailto:RnD@security-science.com)
+- Or [https://www.security-science.com/contact](https://www.security-science.com/contact)
 
 
 ## 🤖 Example Output
