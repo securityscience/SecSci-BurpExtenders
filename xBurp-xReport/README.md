@@ -1,4 +1,4 @@
-## xBurp & xReport
+## 🔁 xBurp & xReport
 
 **xBurp** and **xReport** are lightweight Python-based BurpSuite extensions designed to automate key scanning and reporting functions. Built specifically for use with [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) framework, these tools streamline the penetration testing workflow by automating security scan monitoring, exporting report, and BurpSuite shutdown.
 
@@ -45,8 +45,8 @@ Before installing these extensions, ensure the following:
 ### 3. Load the Extensions into BurpSuite
 
 1. [Download](https://github.com/securityscience/SecSci-BurpExtenders/raw/refs/heads/main/xBurp-xReport/xBurp-xReport.zip) xBurp and xReport
-   - Unzip the download .zip file
-   - MD5 hash: 953d7fcb797a5d1cf6697e2af1b98415
+   - Unzip the download `xBurp-xReport.zip` file
+   - MD5 hash: `67f74736cc500e1d2bd017bbb22d27fe`
 2. Go to **Extender** → **Extensions**
 3. Click **Add**
 4. Set:
@@ -73,16 +73,16 @@ Before installing these extensions, ensure the following:
 
 ## 🐞 Troubleshooting
 
-| Issue                             | Solution                                               |
-|----------------------------------|--------------------------------------------------------|
-| Extension fails to load          | Make sure you’re using Python 2.7 syntax and Jython is set |
-| Scan not detected by xBurp                  | Verify that the scan was initiated through Burp’s active scanner and that it appears in the scan queue        |
-| No output from xReport            | Check that issues exist in the target scope<br/>Validate write permissions for the output directory |
+| Issue                             | Solution                                                                                                  |
+|----------------------------------|-----------------------------------------------------------------------------------------------------------|
+| Extension fails to load          | Make sure you’re using Python 2.7 syntax and Jython is set.                                               |
+| Scan not detected by xBurp                  | Verify that the scan was initiated through Burp’s active scanner and that it appears in the scan queue.   |
+| No output from xReport            | - Check that issues exist in the target scope.<br/>- Validate write permissions for the output directory. |
 
 
 ## 🧩 Integration with Sec-Sci AutoPT
 
-These extensions are designed to operate seamlessly as part of the [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) framework's automated penetration testing.
+These extensions are designed to operate seamlessly as part of the [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) automated penetration testing components.
 
 
 ## 📜 License

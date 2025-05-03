@@ -45,8 +45,8 @@ Before installing the extension, ensure the following:
 ### 3. Add the Extension
 
 1. [Download](https://github.com/securityscience/SecSci-BurpExtenders/raw/refs/heads/main/NMAP%20SSL%20Scanner/NMAP-SSL-Scanner.zip) NMAP SSL Scanner
-   - Unzip the download NMAP-SSL-Scanner.zip file
-   - MD5 hash: 953d7fcb797a5d1cf6697e2af1b98415
+   - Unzip the download `NMAP-SSL-Scanner.zip` file
+   - MD5 hash: `953d7fcb797a5d1cf6697e2af1b98415`
 2. Go to **Extender** → **Extensions**
 3. Click **Add**
 4. Set:
