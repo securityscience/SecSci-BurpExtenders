@@ -10,6 +10,7 @@ outdated protocols, and certificate issues from within the BurpSuite interface.
 - 🔍 Automatically scans HTTPS "In Scope" targets using `nmap --script ssl-*`.
 - 📄 Displays results inside BurpSuite Issues.
 - 📥 Integrates seamlessly with the Extender API.
+- 🔄 Auto-updates SLL issues from the repo.
 - 🧪 Works in both Community and Professional editions of BurpSuite.
 
 
@@ -43,12 +44,15 @@ Before installing the extension, ensure the following:
 
 ### 3. Add the Extension
 
-1. Go to **Extender** → **Extensions**
-2. Click **Add**
-3. Set:
+1. [Download](https://github.com/securityscience/SecSci-BurpExtenders/raw/refs/heads/main/NMAP%20SSL%20Scanner/NMAP-SSL-Scanner.zip) NMAP SSL Scanner
+   - Unzip the download NMAP-SSL-Scanner.zip file
+   - MD5 hash: 953d7fcb797a5d1cf6697e2af1b98415
+2. Go to **Extender** → **Extensions**
+3. Click **Add**
+4. Set:
    - **Extension Type**: Python
    - **Extension File**: `nmap_ssl_scanner.py`
-4. Click **Next** → then **Finish**
+5. Click **Next** → then **Finish**
 
 If successful, the extension will show `Loaded` in the table.
 
@@ -63,7 +67,7 @@ Once the extension is loaded in BurpSuite:
   - Detect in-scope HTTPS responses
   - Automatically run:  
     `nmap --script ssl-* -p <port> <host>`
-  - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.)
+  - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.) and indication of weak certificate.
   - Report issues directly to the **Scanner → Issues** tab as custom findings
 
 
