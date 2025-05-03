@@ -11,7 +11,6 @@ outdated protocols, and certificate issues from within the BurpSuite interface.
 - 📄 Displays results inside BurpSuite Issues.
 - 📥 Integrates seamlessly with the Extender API.
 - 🔄 Auto-updates SLL issues from the repo.
-- 🧪 Works in both Community and Professional editions of BurpSuite.
 
 
 ## 🛠 Prerequisites
@@ -20,7 +19,7 @@ Before installing the extension, ensure the following:
 
 | Component       | Required | Notes                                                                                    |
 |-----------------|----------|------------------------------------------------------------------------------------------|
-| BurpSuite       | ✅        | Community or Professional version                                                        |
+| BurpSuite       | ✅        | [Professional version](https://portswigger.net/burp/documentation/desktop/getting-started/download-and-install)                                                        |
 | Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`) |
 | Python (Jython) | ✅        | Must use Python 2.7 syntax                                                               |
 | Nmap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
