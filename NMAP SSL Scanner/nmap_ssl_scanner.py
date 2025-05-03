@@ -18,12 +18,14 @@ import os
 hosts = []
 
 
-def fetch_latest_issues(remote_ssl_issues_url, local_file="ssl_issues.json"):
+def fetch_latest_issues():
     try:
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
         request = urllib2.Request(remote_ssl_issues_url)
         response = urllib2.urlopen(request, timeout=5)
         content = response.read()
         data = json.loads(content)
+        local_file = "ssl_issues.json"
 
         # Write the new SSL Issues list to local file
         with open(local_file, 'w') as f:
@@ -33,9 +35,6 @@ def fetch_latest_issues(remote_ssl_issues_url, local_file="ssl_issues.json"):
         return data
     except Exception as e:
         print("[INFO] Failed to update SSL Issues from Remote: %s" % str(e))
-
-    # Fallback to local file
-    return load_ssl_issues(local_file)
 
 
 def load_ssl_issues(local_file="ssl_issues.json"):
@@ -65,8 +64,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         print("[ERROR] Nmap scan failed: {}".format(e))
         return None
 
-    remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
-    ssl_issues = fetch_latest_issues(remote_ssl_issues_url)
+    ssl_issues = load_ssl_issues()
 
     issues = []
 
@@ -139,6 +137,7 @@ class BurpExtender(IBurpExtender, IHttpListener):
         callbacks.registerHttpListener(self)
 
         print("[*] SSL Weak Cipher Scanner extension loaded.")
+        fetch_latest_issues()
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
