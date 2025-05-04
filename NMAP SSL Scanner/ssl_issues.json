@@ -1,11 +1,13 @@
 [
     [
         "md5WithRSAEncryption", 
-        "Signature algorithm: md5WithRSAEncryption"
+        "Signature algorithm: md5WithRSAEncryption",
+        "MD5 signatures"
     ], 
     [
         "sha1WithRSAEncryption", 
-        "Signature algorithm: sha1WithRSAEncryption"
+        "Signature algorithm: sha1WithRSAEncryption",
+        "SHA-1 deprecated"
     ], 
     [
         "Self-signed", 
@@ -17,7 +19,8 @@
     ], 
     [
         "size: 1024 bits", 
-        "Key size: 1024 bits"
+        "Key size: 1024 bits",
+        "Too small"
     ], 
     [
         "Algorithm: RSA (1024 bits)", 
@@ -61,46 +64,57 @@
     ], 
     [
         "WITH_RC4", 
-        "Weak cipher suites detected: RC4"
+        "Weak cipher suites detected: RC4",
+        "RC4 is considered insecure / Broken stream cipher (insecure bias)"
     ], 
     [
         "WITH_NULL", 
-        "Weak cipher suites detected: NULL"
+        "Weak cipher suites detected: NULL",
+        "No encryption at all"
     ], 
     [
         "_EXP", 
-        "Weak cipher suites detected: EXP"
+        "Weak cipher suites detected: EXPORT",
+        "Export-grade ciphers (e.g., 40/56-bit)"
     ], 
     [
         "WITH_DES", 
-        "Weak cipher suites detected: DES"
+        "Weak cipher suites detected: DES",
+        "Obsolete, easily broken"
     ], 
     [
         "WITH_3DES", 
-        "Weak cipher suites detected: 3DES"
+        "Weak cipher suites detected: 3DES",
+        "Vulnerable to SWEET32 (block size 64-bit)"
     ], 
     [
         "_MD5", 
-        "Weak cipher suites detected: MD5"
+        "Weak cipher suites detected: MD5",
+        "Weak hashing algorithm"
     ], 
     [
         "WITH_SEED", 
-        "Weak cipher suites detected: SEED"
+        "Weak cipher suites detected: SEED",
+        "Not widely trusted; included for strictness"
     ], 
     [
         "WITH_IDEA", 
-        "Weak cipher suites detected: IDEA"
+        "Weak cipher suites detected: IDEA",
+        "Not widely trusted; included for strictness"
     ], 
     [
         "WITH_CAMELLIA", 
-        "Weak cipher suites detected: CAMELLIA"
+        "Weak cipher suites detected: CAMELLIA",
+        "Not widely trusted; included for strictness"
     ], 
     [
         "CBC_SHA", 
-        "Weak cipher suites detected: CBC"
+        "Weak cipher suites detected: CBC",
+        "Can be vulnerable to BEAST/Lucky13 depending on implementation"
     ], 
     [
         "CRIME", 
-        "Weak cipher suites detected: CRIME"
+        "Weak cipher suites detected: CRIME",
+        "CRIME attack (Compression Ratio Info-leak Made Easy)"
     ]
 ]
