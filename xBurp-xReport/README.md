@@ -1,22 +1,22 @@
-## 🔁 xBurp & xReport
+## xBurp & xReport
 
 **xBurp** and **xReport** are lightweight Python-based BurpSuite extensions designed to automate key scanning and reporting functions. Built specifically for use with [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) framework, these tools streamline the penetration testing workflow by automating security scan monitoring, exporting report, and BurpSuite shutdown.
 
 
-## 🔍 Features
+## Features
 
-### ❎ xBurp
+### xBurp
 - Monitors BurpSuite's active scan status
 - Automatically closes Burp once all scans are complete
 
-### 📝️ xReport
+### xReport
 - Exports Burp's scan issues in:
   - HTML format
   - XML format
   - Or both, based on user selection
 
 
-## ⚙️ Prerequisites
+## Prerequisites
 
 Before installing these extensions, ensure the following:
 
@@ -26,7 +26,7 @@ Before installing these extensions, ensure the following:
 | Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`)    |
 | Python (Jython) | ✅        | Must use Python 2.7 syntax     |
 
-## 📥 Installation Steps
+## Installation Steps
 
 ### 1. Download the Jython Standalone JAR
 
@@ -56,22 +56,22 @@ Before installing these extensions, ensure the following:
 6. Repeat step 3 for `xReport.py`
 
 
-## 🚀 Usage Instructions
+## Usage Instructions
 
-### ❎ xBurp
+### xBurp
 
 - Load `xBurp.py` into BurpSuite
 - Run active scans as usual
 - xBurp will monitor the scanning queue and gracefully shuts down Burp once all scans complete
 
-### 📝️ xReport
+### xReport
 
 - Load `xReport.py` into BurpSuite
 - Choose export format (HTML, XML, or both)
 - Reports will be generated in the configured output directory upon invocation
 
 
-## 🐞 Troubleshooting
+## Troubleshooting
 
 | Issue                             | Solution                                                                                                  |
 |----------------------------------|-----------------------------------------------------------------------------------------------------------|
@@ -80,17 +80,17 @@ Before installing these extensions, ensure the following:
 | No output from xReport            | - Check that issues exist in the target scope.<br/>- Validate write permissions for the output directory. |
 
 
-## 🧩 Integration with Sec-Sci AutoPT
+## Integration with Sec-Sci AutoPT
 
 These extensions are designed to operate seamlessly as part of the [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) automated penetration testing components.
 
 
-## 📜 License
+## License
 
 [GNU GPL 3.0](../LICENSE)
 
 
-## 📫 Contact
+## Contact
 
 For issues, bugs, or want to request features:
 

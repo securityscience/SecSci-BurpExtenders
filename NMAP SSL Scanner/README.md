@@ -5,15 +5,15 @@ It allows security testers to quickly identify SSL-related vulnerabilities like 
 outdated protocols, and certificate issues from within the BurpSuite interface.
 
 
-## 🚀 Features
+## Features
 
-- 🔍 Automatically scans HTTPS "In Scope" targets using `nmap --script ssl-*`.
-- 📄 Displays results inside BurpSuite Issues.
-- 📥 Integrates seamlessly with the Extender API.
-- 🔄 Auto-updates SLL issues from the repo.
+- Automatically scans HTTPS "In Scope" targets using `nmap --script ssl-*`.
+- Displays results inside BurpSuite Issues.
+- Integrates seamlessly with the Extender API.
+- Auto-updates SLL issues from the repo.
 
 
-## 🛠 Prerequisites
+## Prerequisites
 
 Before installing the extension, ensure the following:
 
@@ -25,7 +25,7 @@ Before installing the extension, ensure the following:
 | Nmap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
 
 
-## 📥 Installation Steps
+## Installation Steps
 
 ### 1. Download the Jython Standalone JAR
 
@@ -56,7 +56,7 @@ Before installing the extension, ensure the following:
 If successful, the extension will show `Loaded` in the table.
 
 
-## 🔧 Usage Instructions
+## Usage Instructions
 
 Once the extension is loaded in BurpSuite:
 
@@ -70,7 +70,7 @@ Once the extension is loaded in BurpSuite:
   - Report issues directly to the **Scanner → Issues** tab as custom findings
 
 
-## 🐞 Troubleshooting
+## Troubleshooting
 
 | Issue                             | Solution                                                    |
 |----------------------------------|-------------------------------------------------------------|
@@ -80,11 +80,11 @@ Once the extension is loaded in BurpSuite:
 
 
 
-## 🔐 **SSL/TLS Test Domains**
+## **SSL/TLS Test Domains**
 
 These subdomains are intentionally configured with specific SSL/TLS issues to aid in testing and validation:
 
-### **🔑 Certificate Issues**
+### **Certificate Issues**
 
 - `https://expired.badssl.com` – Expired certificate
 - `https://self-signed.badssl.com` – Self-signed certificate
@@ -92,7 +92,7 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 - `https://revoked.badssl.com` – Revoked certificate
 - `https://pinning-test.badssl.com` – Certificate pinning
 
-### **🔐 Protocol and Cipher Weaknesses**
+### **Protocol and Cipher Weaknesses**
 
 - `https://tls-v1-0.badssl.com` – TLS 1.0 support
 - `https://tls-v1-1.badssl.com` – TLS 1.1 support
@@ -101,19 +101,19 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 - `https://cbc.badssl.com` – CBC cipher support
 - `https://dh480.badssl.com` – Weak Diffie-Hellman parameters
 
-### **🧪 Other Test Cases**
+### **Other Test Cases**
 
 - `https://mixed.badssl.com` – Mixed content (HTTP and HTTPS)
 - `https://sha1-intermediate.badssl.com` – SHA-1 intermediate certificate
 - `https://long-extended-subdomain-name-containing-many-letters-and-dashes.badssl.com` – Test for handling long subdomain names
 
 
-## 📜 License
+## License
 
 [GNU GPL 3.0](../LICENSE)
 
 
-## 🙋 Support
+## Support
 
 If encounter issues, bugs or want to request features:
 
@@ -122,9 +122,9 @@ If encounter issues, bugs or want to request features:
 - Or [https://www.security-science.com/contact](https://www.security-science.com/contact)
 
 
-## 🤖 Example Output
+## Example Output
 
-📋[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-BurpExtenders/blob/main/NMAP%20SSL%20Scanner/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
+[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-BurpExtenders/blob/main/NMAP%20SSL%20Scanner/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
 
 ```
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-01 22:34 Eastern Daylight Time
