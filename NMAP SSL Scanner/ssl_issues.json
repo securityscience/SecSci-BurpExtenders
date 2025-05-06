@@ -1,12 +1,12 @@
 [
     [
         "md5WithRSAEncryption", 
-        "Signature algorithm: md5WithRSAEncryption",
+        "Signature algorithm: md5WithRSAEncryption", 
         "MD5 signatures"
     ], 
     [
         "sha1WithRSAEncryption", 
-        "Signature algorithm: sha1WithRSAEncryption",
+        "Signature algorithm: sha1WithRSAEncryption", 
         "SHA-1 deprecated"
     ], 
     [
@@ -19,7 +19,7 @@
     ], 
     [
         "size: 1024 bits", 
-        "Key size: 1024 bits",
+        "Key size: 1024 bits", 
         "Too small"
     ], 
     [
@@ -64,57 +64,187 @@
     ], 
     [
         "WITH_RC4", 
-        "Weak cipher suites detected: RC4",
+        "Weak cipher suites detected: RC4", 
         "RC4 is considered insecure / Broken stream cipher (insecure bias)"
     ], 
     [
         "WITH_NULL", 
-        "Weak cipher suites detected: NULL",
+        "Weak cipher suites detected: NULL", 
         "No encryption at all"
     ], 
     [
         "_EXP", 
-        "Weak cipher suites detected: EXPORT",
+        "Weak cipher suites detected: EXPORT", 
         "Export-grade ciphers (e.g., 40/56-bit)"
     ], 
     [
         "WITH_DES", 
-        "Weak cipher suites detected: DES",
+        "Weak cipher suites detected: DES", 
         "Obsolete, easily broken"
     ], 
     [
         "WITH_3DES", 
-        "Weak cipher suites detected: 3DES",
+        "Weak cipher suites detected: 3DES", 
         "Vulnerable to SWEET32 (block size 64-bit)"
     ], 
     [
         "_MD5", 
-        "Weak cipher suites detected: MD5",
+        "Weak cipher suites detected: MD5", 
         "Weak hashing algorithm"
     ], 
     [
         "WITH_SEED", 
-        "Weak cipher suites detected: SEED",
+        "Weak cipher suites detected: SEED", 
         "Not widely trusted; included for strictness"
     ], 
     [
         "WITH_IDEA", 
-        "Weak cipher suites detected: IDEA",
+        "Weak cipher suites detected: IDEA", 
         "Not widely trusted; included for strictness"
     ], 
     [
         "WITH_CAMELLIA", 
-        "Weak cipher suites detected: CAMELLIA",
+        "Weak cipher suites detected: CAMELLIA", 
         "Not widely trusted; included for strictness"
     ], 
     [
         "CBC_SHA", 
-        "Weak cipher suites detected: CBC",
+        "Weak cipher suites detected: CBC", 
         "Can be vulnerable to BEAST/Lucky13 depending on implementation"
     ], 
     [
         "CRIME", 
-        "Weak cipher suites detected: CRIME",
+        "Weak cipher suites detected: CRIME", 
         "CRIME attack (Compression Ratio Info-leak Made Easy)"
+    ],
+    [
+        "ECDHE_RSA_AES256_SHA",
+        "ECDHE_RSA_AES256_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "ECDHE_RSA_AES128_SHA",
+        "ECDHE_RSA_AES128_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "ECDHE_RSA_DES_CBC3_SHA",
+        "ECDHE_RSA_DES_CBC3_SHA: 3DES SWEET32 LUCKY13",
+        "Vulnerable to 3DES SWEET32 LUCKY13"
+    ],
+    [
+        "AES128_SHA",
+        "AES128_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "AES256_SHA",
+        "AES256_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "DES_CBC3_SHA",
+        "DES_CBC3_SHA: 3DES SWEET32",
+        "Vulnerable to 3DES SWEET32"
+    ],
+    [
+        "RC4_SHA",
+        "RC4_SHA: RC4 bias",
+        "Vulnerable to RC4 bias"
+    ],
+    [
+        "RC4_MD5",
+        "RC4_MD5: RC4 bias weak MD5 hash",
+        "Vulnerable to RC4 bias weak MD5 hash"
+    ],
+    [
+        "ECDHE_RSA_RC4_SHA",
+        "ECDHE_RSA_RC4_SHA: RC4 bias",
+        "Vulnerable to RC4 bias"
+    ],
+    [
+        "EXP_RC4_MD5",
+        "EXP_RC4_MD5: Export_grade RC4 bias weak MD5 hash",
+        "Vulnerable to Export_grade RC4 bias weak MD5 hash"
+    ],
+    [
+        "EXP_DES_CBC_SHA",
+        "EXP_DES_CBC_SHA: Export_grade weak DES cipher",
+        "Vulnerable to Export_grade weak DES cipher"
+    ],
+    [
+        "EXP_EDH_RSA_DES_CBC_SHA",
+        "EXP_EDH_RSA_DES_CBC_SHA: Export_grade weak DH weak DES cipher",
+        "Vulnerable to Export_grade weak DH weak DES cipher"
+    ],
+    [
+        "EXP_ADH_RC4_MD5",
+        "EXP_ADH_RC4_MD5: Export_grade anonymous RC4 bias weak MD5 hash",
+        "Vulnerable to Export_grade anonymous RC4 bias weak MD5 hash"
+    ],
+    [
+        "NULL_SHA",
+        "NULL_SHA: NULL cipher (no encryption)",
+        "Vulnerable to NULL cipher (no encryption)"
+    ],
+    [
+        "ADH_AES128_SHA",
+        "ADH_AES128_SHA: Anonymous LUCKY13",
+        "Vulnerable to Anonymous LUCKY13"
+    ],
+    [
+        "ADH_DES_CBC3_SHA",
+        "ADH_DES_CBC3_SHA: Anonymous 3DES SWEET32",
+        "Vulnerable to Anonymous 3DES SWEET32"
+    ],
+    [
+        "RSA_RC4_40_MD5",
+        "RSA_RC4_40_MD5: Export_grade RC4 bias weak MD5 hash",
+        "Vulnerable to Export_grade RC4 bias weak MD5 hash"
+    ],
+    [
+        "RSA_RC2_40_MD5",
+        "RSA_RC2_40_MD5: Export_grade RC2 weak MD5 hash",
+        "Vulnerable to Export_grade RC2 weak MD5 hash"
+    ],
+    [
+        "RSA_MD5",
+        "RSA_MD5: weak MD5 hash",
+        "Vulnerable to weak MD5 hash"
+    ],
+    [
+        "DH_RSA_AES256_SHA",
+        "DH_RSA_AES256_SHA: No forward secrecy LUCKY13",
+        "Vulnerable to No forward secrecy LUCKY13"
+    ],
+    [
+        "DHE_RSA_DES_CBC3_SHA",
+        "DHE_RSA_DES_CBC3_SHA: 3DES SWEET32 LUCKY13",
+        "Vulnerable to 3DES SWEET32 LUCKY13"
+    ],
+    [
+        "DHE_RSA_AES256_SHA",
+        "DHE_RSA_AES256_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "DHE_RSA_AES128_SHA",
+        "DHE_RSA_AES128_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "DHE_RSA_CAMELLIA256_SHA",
+        "DHE_RSA_CAMELLIA256_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "DHE_RSA_CAMELLIA128_SHA",
+        "DHE_RSA_CAMELLIA128_SHA: LUCKY13",
+        "Vulnerable to LUCKY13"
+    ],
+    [
+        "EDH_RSA_DES_CBC3_SHA",
+        "EDH_RSA_DES_CBC3_SHA: 3DES SWEET32 LUCKY13",
+        "Vulnerable to 3DES SWEET32 LUCKY13"
     ]
 ]
