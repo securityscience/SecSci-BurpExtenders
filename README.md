@@ -1,4 +1,4 @@
-## 🛡️ NMAP SSL Scanner
+## SecSCi NMAP SSL Scanner
 
 This BurpSuite extension integrates `nmap` SSL scanning directly into BurpSuite using Python.
 It allows security testers to quickly identify SSL-related vulnerabilities like weak ciphers,
@@ -22,7 +22,7 @@ Before installing the extension, ensure the following:
 | BurpSuite       | ✅        | [Professional version](https://portswigger.net/burp/documentation/desktop/getting-started/download-and-install)                                                        |
 | Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`) |
 | Python (Jython) | ✅        | Must use Python 2.7 syntax                                                               |
-| Nmap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
+| NMap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
 
 
 ## Installation Steps
@@ -43,9 +43,8 @@ Before installing the extension, ensure the following:
 
 ### 3. Add the Extension
 
-1. [Download](https://github.com/securityscience/SecSci-BurpExtenders/raw/refs/heads/main/NMAP%20SSL%20Scanner/NMAP-SSL-Scanner.zip) NMAP SSL Scanner
-   - Unzip the download `NMAP-SSL-Scanner.zip` file
-   - MD5 hash: `953d7fcb797a5d1cf6697e2af1b98415`
+1. [Download](https://github.com/securityscience/SecSci-NMap-SSL-Scanner/zipball/main) NMAP SSL Scanner
+   - Unzip the downloaded `SecSci-NMAP-SSL-Scanner.zip` file
 2. Go to **Extender** → **Extensions**
 3. Click **Add**
 4. Set:
