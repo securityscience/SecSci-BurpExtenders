@@ -1,4 +1,4 @@
-## SecSCi NMAP SSL Scanner
+## 🛡️ SecSCi NMAP SSL Scanner
 
 This BurpSuite extension integrates `nmap` SSL scanning directly into BurpSuite using Python.
 It allows security testers to quickly identify SSL-related vulnerabilities like weak ciphers,
