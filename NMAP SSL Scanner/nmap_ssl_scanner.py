@@ -53,6 +53,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     # print("[INFO] Running Nmap command: {}".format(nmap_cmd))
 
     try:
+        print("SSL Scan Started for " + host + ":" + str(port))
         nmap_output = subprocess.check_output(nmap_cmd, stderr=subprocess.STDOUT)
         nmap_output = nmap_output.decode("utf-8")
         # print("[DEBUG] Nmap output:\n" + nmap_output)
@@ -125,6 +126,8 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             "Medium"
         )
         callbacks.addScanIssue(issue)
+
+        print("SSL Scan Completed for " + host + ":" + str(port))
 
 
 class BurpExtender(IBurpExtender, IHttpListener):
