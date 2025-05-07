@@ -121,7 +121,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             httpService,
             request_url,
             [messageInfo],
-            "Weak TLS/SSL Configuration",
+            "[SecSci SSL Scanner] Weak TLS/SSL Configuration",
             issue_detail,
             "Medium"
         )
@@ -139,7 +139,7 @@ class BurpExtender(IBurpExtender, IHttpListener):
         callbacks.registerHttpListener(self)
 
         print("[*] SSL Weak Cipher Scanner extension loaded.")
-        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-BurpExtenders/refs/heads/main/NMAP%20SSL%20Scanner/ssl_issues.json"
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-NMap-SSL-Scanner/refs/heads/main/ssl_issues.json"
         fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
