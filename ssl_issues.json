@@ -115,7 +115,7 @@
     [
         "CRIME", 
         "Weak cipher suites detected: CRIME", 
-        "CRIME attack (Compression Ratio Info-leak Made Easy)"
+        "CRIME attack (Compression Ratio Info-leak Made Easy)."
     ], 
     [
         "ECDHE_RSA_AES256_SHA", 
