@@ -135,7 +135,7 @@ class BurpExtender(IBurpExtender, IHttpListener):
     def registerExtenderCallbacks(self, callbacks):
         self._callbacks = callbacks
         self._helpers = callbacks.getHelpers()
-        callbacks.setExtensionName("Sec-Sci NMap SSL Scanner")
+        callbacks.setExtensionName("SecSci NMap SSL Scanner")
         callbacks.registerHttpListener(self)
 
         print("[*] SSL Weak Cipher Scanner extension loaded.")
