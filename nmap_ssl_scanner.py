@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci NMap SSL Scanner v1.250502 - May 2025
+# Sec-Sci NMap SSL Scanner v1.250509 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci NMAP SSL Scanner v1.250502
+# Tool:      Sec-Sci NMAP SSL Scanner v1.250509
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -16,6 +16,16 @@ import urllib2
 import os
 
 hosts = []
+
+
+def is_nmap_installed():
+    try:
+        output = subprocess.check_output(["nmap", "-V"], stderr=subprocess.STDOUT)
+        return True
+    except OSError:
+        return False
+    except subprocess.CalledProcessError:
+        return True
 
 
 def fetch_latest_issues(remote_ssl_issues_url):
@@ -48,7 +58,7 @@ def load_ssl_issues(local_file="ssl_issues.json"):
 
 def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbacks):
     # nmap_cmd = ["nmap", "--script", "ssl-enum-ciphers", "-p", str(port), host]
-    nmap_cmd = ["nmap", "--script", "ssl-*", "-p", str(port), host]
+    nmap_cmd = ["nmap", "-sV", "--script", "ssl*,tls*", "-p", str(port), host]
 
     # print("[INFO] Running Nmap command: {}".format(nmap_cmd))
 
@@ -135,11 +145,17 @@ class BurpExtender(IBurpExtender, IHttpListener):
     def registerExtenderCallbacks(self, callbacks):
         self._callbacks = callbacks
         self._helpers = callbacks.getHelpers()
-        callbacks.setExtensionName("SecSci NMap SSL Scanner")
+        callbacks.setExtensionName("SecSci SSL/TLS Scanner")
         callbacks.registerHttpListener(self)
 
-        print("[*] SSL Weak Cipher Scanner extension loaded.")
-        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-NMap-SSL-Scanner/refs/heads/main/ssl_issues.json"
+        print("[*] SSL/TLS Scanner extension loaded.")
+
+        if not is_nmap_installed():
+            print("[ERROR] Unable to locate NMap.")
+            print("[INFO] Check NMap installation directory and add to PATH environment variable.")
+            return None
+
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
         fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
