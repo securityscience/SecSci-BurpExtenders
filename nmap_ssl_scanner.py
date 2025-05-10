@@ -87,7 +87,6 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     if len(deprecated_protocol_issues) > 1:
         ssl_tls_issues = deprecated_protocol_issues
 
-    # ###################
     common_weak_ciphers = ssl_issues["Common_Weak_Ciphers"]
     common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><br>"]
 
@@ -101,7 +100,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
 
     if len(common_weak_cipher_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + common_weak_cipher_issues
-    # #####################
+
     known_vulnerabilities = ssl_issues["Known_Vulnerabilities"]
     known_vulnerability_issues = ["<br><b>Known Vulnerabilities:</b><br>"]
 
@@ -200,8 +199,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
             print("[INFO] Check NMap installation directory and add to PATH environment variable.")
             return None
 
-        # remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
-        # fetch_latest_issues(remote_ssl_issues_url)
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
+        fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
