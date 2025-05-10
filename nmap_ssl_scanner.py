@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v1.250510 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.250510 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v1.250510
+# Tool:      Sec-Sci SSL/TLS Scanner v2.250510
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -63,7 +63,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     # print("[INFO] Running Nmap command: {}".format(nmap_cmd))
 
     try:
-        print("SSL Scan Started for " + host + ":" + str(port))
+        print("[!] SSL Scan Started for " + host + ":" + str(port))
         nmap_output = subprocess.check_output(nmap_cmd, stderr=subprocess.STDOUT)
         nmap_output = nmap_output.decode("utf-8")
         # print("[DEBUG] Nmap output:\n" + nmap_output)
@@ -115,12 +115,23 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     if len(known_vulnerability_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + known_vulnerability_issues
 
+    insecure_ciphers = ssl_issues["Insecure_Ciphers"]
+    insecure_cipher_issues = ["<br><b>Insecure Ciphers:</b><br>"]
+
+    for insecure_cipher in insecure_ciphers:
+        if insecure_cipher[0] in nmap_output:
+            insecure_cipher_issues.append('- <a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b>'
+                                          .format(insecure_cipher[0], insecure_cipher[1]))
+
+    if len(insecure_cipher_issues) > 1:
+        ssl_tls_issues = ssl_tls_issues + insecure_cipher_issues
+
     weak_ciphers = ssl_issues["Weak_Ciphers"]
     weak_cipher_issues = ["<br><b>Weak Ciphers:</b><br>"]
 
     for weak_cipher in weak_ciphers:
         if weak_cipher[0] in nmap_output:
-            weak_cipher_issues.append('- <a href="https://ciphersuite.info/cs/{0}">{0}</a>: <b>{1}</b>'
+            weak_cipher_issues.append('- <a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b>'
                                       .format(weak_cipher[0], weak_cipher[1]))
 
     if len(weak_cipher_issues) > 1:
@@ -175,13 +186,13 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             httpService,
             request_url,
             [messageInfo],
-            "[SecSci SSL Scanner] Weak TLS/SSL Configuration",
+            "[SecSci SSL/TLS Scanner] Insecure Configuration",
             issue_detail,
             "Medium"
         )
         callbacks.addScanIssue(issue)
 
-        print("SSL Scan Completed for " + host + ":" + str(port))
+        print("[!] SSL Scan Completed for " + host + ":" + str(port))
 
 
 class BurpExtender(IBurpExtender, IHttpListener):
@@ -199,8 +210,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
             print("[INFO] Check NMap installation directory and add to PATH environment variable.")
             return None
 
-        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
-        fetch_latest_issues(remote_ssl_issues_url)
+        # remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
+        # fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
