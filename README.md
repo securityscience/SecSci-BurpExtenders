@@ -1,13 +1,13 @@
-## 🛡️ SecSCi NMAP SSL Scanner
+## 🛡️ SecSCi SSL/TLS Scanner
 
-This BurpSuite extension integrates `nmap` SSL scanning directly into BurpSuite using Python.
-It allows security testers to quickly identify SSL-related vulnerabilities like weak ciphers,
+This BurpSuite extension integrates `nmap` SSL/TLS scanning directly into BurpSuite using Python.
+It allows security testers to quickly identify SSL/TLS-related vulnerabilities like weak ciphers,
 outdated protocols, and certificate issues from within the BurpSuite interface.
 
 
 ## Features
 
-- Automatically scans HTTPS "In Scope" targets using `nmap --script ssl-*`.
+- Automatically scans HTTPS "In Scope" targets using `nmap --script ssl*,tls*`.
 - Displays results inside BurpSuite Issues.
 - Integrates seamlessly with the Extender API.
 - Auto-updates SLL issues from the repo.
@@ -109,7 +109,7 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 
 ## License
 
-[GNU GPL 3.0](../LICENSE)
+[GNU GPL 3.0](LICENSE)
 
 
 ## Support
@@ -126,9 +126,9 @@ If encounter issues, bugs or want to request features:
 [ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-BurpExtenders/blob/main/NMAP%20SSL%20Scanner/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
 
 ```
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-01 22:34 Eastern Daylight Time
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-09 15:04 Eastern Daylight Time
 Nmap scan report for 3des.badssl.com (104.154.89.105)
-Host is up (0.046s latency).
+Host is up (0.043s latency).
 rDNS record for 104.154.89.105: 105.89.154.104.bc.googleusercontent.com
 
 PORT    STATE SERVICE
@@ -143,7 +143,23 @@ PORT    STATE SERVICE
 | Not valid after:  2025-06-09T20:02:46
 | MD5:   e9b3:deb1:508c:9d1d:e012:4ef1:892c:a97c
 |_SHA-1: 0272:a57f:a7a7:3bab:ed17:729a:c018:2c68:b2ae:f80d
-|_ssl-date: TLS randomness does not represent time
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: nginx/1024-bit MODP group with safe prime modulus
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
@@ -179,23 +195,11 @@ PORT    STATE SERVICE
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
 |       Key exchange (dh 1024) of lower strength than certificate key
 |_  least strength: D
-| ssl-dh-params: 
-|   VULNERABLE:
-|   Diffie-Hellman Key Exchange Insufficient Group Strength
-|     State: VULNERABLE
-|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
-|       of insufficient strength, especially those using one of a few commonly
-|       shared groups, may be susceptible to passive eavesdropping attacks.
-|     Check results:
-|       WEAK DH GROUP 1
-|             Cipher Suite: TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA
-|             Modulus Type: Safe prime
-|             Modulus Source: nginx/1024-bit MODP group with safe prime modulus
-|             Modulus Length: 1024
-|             Generator Length: 8
-|             Public Key Length: 1024
-|     References:
-|_      https://weakdh.org
+| tls-nextprotoneg: 
+|_  http/1.1
+| tls-alpn: 
+|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
 
-Nmap done: 1 IP address (1 host up) scanned in 16.80 seconds
+Nmap done: 1 IP address (1 host up) scanned in 17.90 seconds
 ```
