@@ -210,8 +210,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
             print("[INFO] Check NMap installation directory and add to PATH environment variable.")
             return None
 
-        # remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
-        # fetch_latest_issues(remote_ssl_issues_url)
+        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
+        fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
