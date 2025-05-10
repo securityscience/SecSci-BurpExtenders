@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci NMap SSL Scanner v1.250509 - May 2025
+# Sec-Sci SSL/TLS Scanner v1.250510 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci NMAP SSL Scanner v1.250509
+# Tool:      Sec-Sci SSL/TLS Scanner v1.250510
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -74,22 +74,67 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         print("[ERROR] Nmap scan failed: {}".format(e))
         return None
 
+    ssl_tls_issues = []
     ssl_issues = load_ssl_issues()
 
-    issues = []
+    deprecated_protocols = ssl_issues["Deprecated_Protocols"]
+    deprecated_protocol_issues = ["<b>Deprecated Protocols Detected:</b><br>"]
 
-    for ssl_issue in ssl_issues:
-        if ssl_issue[0] in nmap_output:
-            issues.append("- " + ssl_issue[1])
+    for deprecated_protocol in deprecated_protocols:
+        if deprecated_protocol[0] in nmap_output:
+            deprecated_protocol_issues.append('- {0}: <b>{1}</b>'.format(deprecated_protocol[0], deprecated_protocol[1]))
 
-    if issues:
+    if len(deprecated_protocol_issues) > 1:
+        ssl_tls_issues = deprecated_protocol_issues
+
+    # ###################
+    common_weak_ciphers = ssl_issues["Common_Weak_Ciphers"]
+    common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><br>"]
+
+    for common_weak_cipher in common_weak_ciphers:
+        if common_weak_cipher[0] in nmap_output:
+            common_weak_cipher_issues.append(
+                '- {0}: '.format(common_weak_cipher[1]) + "<b>Yes</b>")
+        else:
+            common_weak_cipher_issues.append(
+                '- {0}: '.format(common_weak_cipher[1]) + "<b>No</b>")
+
+    if len(common_weak_cipher_issues) > 1:
+        ssl_tls_issues = ssl_tls_issues + common_weak_cipher_issues
+    # #####################
+    known_vulnerabilities = ssl_issues["Known_Vulnerabilities"]
+    known_vulnerability_issues = ["<br><b>Known Vulnerabilities:</b><br>"]
+
+    for known_vulnerability in known_vulnerabilities:
+        if known_vulnerability[0] in nmap_output:
+            known_vulnerability_issues.append(
+                '- {0}: '.format(known_vulnerability[1]) + "<b>Yes</b>")
+        else:
+            known_vulnerability_issues.append(
+                '- {0}: '.format(known_vulnerability[1]) + "<b>No</b>")
+
+    if len(known_vulnerability_issues) > 1:
+        ssl_tls_issues = ssl_tls_issues + known_vulnerability_issues
+
+    weak_ciphers = ssl_issues["Weak_Ciphers"]
+    weak_cipher_issues = ["<br><b>Weak Ciphers:</b><br>"]
+
+    for weak_cipher in weak_ciphers:
+        if weak_cipher[0] in nmap_output:
+            weak_cipher_issues.append('- <a href="https://ciphersuite.info/cs/{0}">{0}</a>: <b>{1}</b>'
+                                      .format(weak_cipher[0], weak_cipher[1]))
+
+    if len(weak_cipher_issues) > 1:
+        ssl_tls_issues = ssl_tls_issues + weak_cipher_issues
+
+    if ssl_tls_issues:
         issue_detail = """               
                     The server is configured to support weak SSL/TLS cipher suites, which could allow an attacker to decrypt 
                     or tamper with encrypted traffic through methods such as cryptographic downgrade attacks, brute force,
                     or protocol vulnerabilities.<br><br>
                     During SSL/TLS negotiation with the server, the following weak cipher suites were found to be supported
                     and indication of weak certificate:<br><br>
-                    """ + "<br>".join(issues) + """<br><br>
+                    """ + "<br>".join(ssl_tls_issues) + """<br><br>
                     Use of these cipher suites significantly reduces the strength of encryption and may expose sensitive
                     data to interception or modification. SSL Scanner initiated a TLS handshake and observed these weak
                     ciphers in the server's response. This indicates the server is not enforcing modern, secure cipher policies.
@@ -155,8 +200,8 @@ class BurpExtender(IBurpExtender, IHttpListener):
             print("[INFO] Check NMap installation directory and add to PATH environment variable.")
             return None
 
-        remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
-        fetch_latest_issues(remote_ssl_issues_url)
+        # remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
+        # fetch_latest_issues(remote_ssl_issues_url)
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
