@@ -43,8 +43,8 @@ Before installing the extension, ensure the following:
 
 ### 3. Add the Extension
 
-1. [Download](https://github.com/securityscience/SecSci-NMap-SSL-Scanner/zipball/main) NMAP SSL Scanner
-   - Unzip the downloaded `SecSci-NMAP-SSL-Scanner.zip` file
+1. Download [ [zip](https://github.com/securityscience/SecSci-NMap-SSL-Scanner/zipball/main) | [tar](https://github.com/securityscience/SecSci-NMap-SSL-Scanner/tarball/main) ] NMAP SSL Scanner
+   - Unzip or Untar the downloaded `SecSci-NMAP-SSL-Scanner.zip|.tar` file
 2. Go to **Extender** → **Extensions**
 3. Click **Add**
 4. Set:
@@ -64,7 +64,9 @@ Once the extension is loaded in BurpSuite:
 - The extension will:
   - Detect in-scope HTTPS responses
   - Automatically run:  
-    `nmap --script ssl-* -p <port> <host>`
+    ```bash
+     nmap -sV --script ssl*,tls* -p <port> <host>
+    ```
   - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.) and indication of weak certificate.
   - Report issues directly to the **Scanner → Issues** tab as custom findings
 
@@ -116,23 +118,27 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 
 If encounter issues, bugs or want to request features:
 
-- Submit an [Issue](https://github.com/securityscience/SecSci-BurpExtenders/issues)
+- Submit an [Issue](https://github.com/securityscience/SecSci-SSL-TLS-Scanner/issues)
 - Contact: [RnD@security-science.com](mailto:RnD@security-science.com)
 - Or [https://www.security-science.com/contact](https://www.security-science.com/contact)
 
 
 ## Example Output
 
-[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-BurpExtenders/blob/main/NMAP%20SSL%20Scanner/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
+[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-SSL-TLS-Scanner/blob/main/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
 
 ```
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-09 15:04 Eastern Daylight Time
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-10 13:38 Eastern Daylight Time
 Nmap scan report for 3des.badssl.com (104.154.89.105)
 Host is up (0.043s latency).
 rDNS record for 104.154.89.105: 105.89.154.104.bc.googleusercontent.com
 
-PORT    STATE SERVICE
-443/tcp open  https
+PORT    STATE SERVICE  VERSION
+443/tcp open  ssl/http nginx 1.10.3 (Ubuntu)
+| tls-nextprotoneg: 
+|_  http/1.1
+| tls-alpn: 
+|_  http/1.1
 | ssl-cert: Subject: commonName=*.badssl.com
 | Subject Alternative Name: DNS:*.badssl.com, DNS:badssl.com
 | Issuer: commonName=R10/organizationName=Let's Encrypt/countryName=US
@@ -143,6 +149,8 @@ PORT    STATE SERVICE
 | Not valid after:  2025-06-09T20:02:46
 | MD5:   e9b3:deb1:508c:9d1d:e012:4ef1:892c:a97c
 |_SHA-1: 0272:a57f:a7a7:3bab:ed17:729a:c018:2c68:b2ae:f80d
+|_http-server-header: nginx/1.10.3 (Ubuntu)
+|_ssl-date: TLS randomness does not represent time
 | ssl-dh-params: 
 |   VULNERABLE:
 |   Diffie-Hellman Key Exchange Insufficient Group Strength
@@ -195,11 +203,8 @@ PORT    STATE SERVICE
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
 |       Key exchange (dh 1024) of lower strength than certificate key
 |_  least strength: D
-| tls-nextprotoneg: 
-|_  http/1.1
-| tls-alpn: 
-|_  http/1.1
-|_ssl-date: TLS randomness does not represent time
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
-Nmap done: 1 IP address (1 host up) scanned in 17.90 seconds
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 30.28 seconds
 ```
