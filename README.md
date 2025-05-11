@@ -70,6 +70,8 @@ Once the extension is loaded in BurpSuite:
   - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.) and indication of weak certificate.
   - Report issues directly to the **Scanner → Issues** tab as custom findings
 
+- Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
+  ![Context Menu](context_menu.png)
 
 ## Troubleshooting
 
@@ -126,6 +128,11 @@ If encounter issues, bugs or want to request features:
 ## Example Output
 
 [ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-SSL-TLS-Scanner/blob/main/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
+
+### Example BurpSuite Issues
+
+![ssl-tls-issue-detail_1.png](ssl-tls-issue-detail_1.png)
+![ssl-tls-issue-detail_2.png](ssl-tls-issue-detail_2.png)
 
 ```
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-10 13:38 Eastern Daylight Time
