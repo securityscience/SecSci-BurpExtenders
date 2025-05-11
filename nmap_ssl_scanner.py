@@ -1,14 +1,17 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.250510 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.250511 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.250510
+# Tool:      Sec-Sci SSL/TLS Scanner v2.250511
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
 # @license:  GNU GPL 3.0
 # @copyright (C) 2025 WWW.SECURITY-SCIENCE.COM
 
-from burp import IBurpExtender, IHttpListener, IScanIssue
+from burp import IBurpExtender, IHttpListener, IScanIssue, IContextMenuFactory
+from javax.swing import JMenuItem, JOptionPane
+from java.util import ArrayList
+from java.awt.event import ActionListener
 import subprocess
 import threading
 import json
@@ -195,13 +198,14 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         print("[!] SSL Scan Completed for " + host + ":" + str(port))
 
 
-class BurpExtender(IBurpExtender, IHttpListener):
+class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
 
     def registerExtenderCallbacks(self, callbacks):
         self._callbacks = callbacks
         self._helpers = callbacks.getHelpers()
         callbacks.setExtensionName("SecSci SSL/TLS Scanner")
         callbacks.registerHttpListener(self)
+        callbacks.registerContextMenuFactory(self)
 
         print("[*] SSL/TLS Scanner extension loaded.")
 
@@ -212,6 +216,61 @@ class BurpExtender(IBurpExtender, IHttpListener):
 
         remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
         fetch_latest_issues(remote_ssl_issues_url)
+
+    def createMenuItems(self, invocation):
+        context_menu = ArrayList()
+
+        context_menu_item = JMenuItem("SecSci SSL/TLS Scanner")
+        context_menu_item.addActionListener(self._menuSSLScanner(invocation, self._callbacks, self._helpers))
+        context_menu.add(context_menu_item)
+
+        return context_menu
+
+    class _menuSSLScanner(ActionListener):
+        def __init__(self, invocation, callbacks, helpers):
+            self._invocation = invocation
+            self._callbacks = callbacks
+            self._helpers = helpers
+
+        def actionPerformed(self, event):
+            selected_messages = self._invocation.getSelectedMessages()
+            if selected_messages:
+                for messageInfo in selected_messages:
+                    httpService = messageInfo.getHttpService()
+                    host = messageInfo.getHttpService().getHost()
+                    port = messageInfo.getHttpService().getPort()
+                    protocol = messageInfo.getHttpService().getProtocol()
+                    request_url = self._helpers.analyzeRequest(messageInfo).getUrl()
+
+                    # Skip if not https and verify if URL is Out-of-Scope
+                    if str(protocol).lower() == "https":
+                        if not self._callbacks.isInScope(request_url):
+                            continue_scan = JOptionPane.showConfirmDialog(
+                                None,
+                                "The selected URL {} is not In-Scope. Continue SSL/TLS Scan?".format(request_url),
+                                "SecSci SSL/TLS Scanner",
+                                JOptionPane.YES_NO_OPTION,
+                                JOptionPane.WARNING_MESSAGE)
+
+                            if continue_scan == JOptionPane.YES_OPTION:
+                                print("[INFO] {} is not In-Scope: SSL/TLS scan initiated.".format(request_url))
+                            else:
+                                print("[INFO] {} is not In-Scope: SSL/TLS scan is cancelled.".format(request_url))
+                        else:
+                            continue_scan = JOptionPane.YES_OPTION
+
+                        if continue_scan == JOptionPane.YES_OPTION:
+                            target = host + ":" + str(port)
+
+                            if target not in hosts:
+                                hosts.append(target)
+                                threading.Thread(target=run_nmap_ssl_scan,
+                                                 args=(host, port, httpService, request_url, messageInfo,
+                                                       self._callbacks)).start()
+                            else:
+                                print("[INFO] {} is already scanned.".format(target))
+                    else:
+                        print("[INFO] {} is not running on HTTPS protocol.".format(request_url))
 
     def processHttpMessage(self, toolFlag, messageIsRequest, messageInfo):
         # Only act on responses (not requests)
@@ -225,7 +284,7 @@ class BurpExtender(IBurpExtender, IHttpListener):
         request_url = self._helpers.analyzeRequest(messageInfo).getUrl()
 
         # Skip if not https or the URL is out-of-scope
-        if protocol != "https" or not self._callbacks.isInScope(request_url):
+        if str(protocol).lower() != "https" or not self._callbacks.isInScope(request_url):
             return None
 
         target = host + ":" + str(port)
