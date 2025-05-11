@@ -71,7 +71,7 @@ Once the extension is loaded in BurpSuite:
   - Report issues directly to the **Scanner → Issues** tab as custom findings
 
 - Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
-  ![Context Menu](context_menu.png)
+  ![Context Menu](images/context_menu.png)
 
 ## Troubleshooting
 
@@ -131,8 +131,8 @@ If encounter issues, bugs or want to request features:
 
 ### Example BurpSuite Issues
 
-![ssl-tls-issue-detail_1.png](ssl-tls-issue-detail_1.png)
-![ssl-tls-issue-detail_2.png](ssl-tls-issue-detail_2.png)
+![ssl-tls-issue-detail_1.png](images/ssl-tls-issue-detail_1.png)
+![ssl-tls-issue-detail_2.png](images/ssl-tls-issue-detail_2.png)
 
 ```
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-10 13:38 Eastern Daylight Time
