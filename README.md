@@ -49,7 +49,7 @@ Before installing the extension, ensure the following:
 3. Click **Add**
 4. Set:
    - **Extension Type**: Python
-   - **Extension File**: `nmap_ssl_scanner.py`
+   - **Extension File**: `ssl_tls_scanner.py`
 5. Click **Next** → then **Finish**
 
 If successful, the extension will show `Loaded` in the table.
