@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.250511 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.1.250511 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.250511
+# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250511
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -17,6 +17,7 @@ import threading
 import json
 import urllib2
 import os
+import re
 
 hosts = []
 
@@ -79,16 +80,62 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
 
     ssl_tls_issues = []
     ssl_issues = load_ssl_issues()
+    burp_issue_severity = "Medium"
+
+    insecure_certs = ssl_issues["Insecure_Certs"]
+    insecure_cert_issues = ["<b>Insecure Certificate:</b><br>"]
+
+    for insecure_cert in insecure_certs:
+        pattern = insecure_cert[0]
+        description = insecure_cert[1]
+        cert_severity = insecure_cert[2]
+        condition = insecure_cert[3] if len(insecure_cert) > 3 else ""
+
+        match_pattern = re.search(pattern, nmap_output)
+
+        if match_pattern:
+            match_value = match_pattern.group(1)
+            description_value = match_pattern.group(0)
+            if burp_issue_severity not in ["Critical", "High"] and cert_severity in ["Critical", "High"]:
+                burp_issue_severity = "High"
+
+            if isinstance(condition, basestring):
+                if any(op in condition for op in ['<', '>', '=', '!=']):
+                    try:
+                        # Condition is a numeric comparison string
+                        if eval("%s%s" % (match_value, condition)):
+                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                    except:
+                        pass
+                elif 'datetime' in condition:
+                    try:
+                        match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
+                        # Condition is a datetime comparison string
+                        if match_value < datetime.utcnow():
+                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                    except:
+                        pass
+                else:
+                    try:
+                        # Condition is a regular string
+                        if condition in match_value:
+                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                    except:
+                        pass
+
+    if len(insecure_cert_issues) > 1:
+        ssl_tls_issues = ssl_tls_issues + insecure_cert_issues
 
     deprecated_protocols = ssl_issues["Deprecated_Protocols"]
-    deprecated_protocol_issues = ["<b>Deprecated Protocols Detected:</b><br>"]
+    deprecated_protocol_issues = ["<br><b>Deprecated Protocols Detected:</b><br>"]
 
     for deprecated_protocol in deprecated_protocols:
         if deprecated_protocol[0] in nmap_output:
             deprecated_protocol_issues.append('- {0}: <b>{1}</b>'.format(deprecated_protocol[0], deprecated_protocol[1]))
 
     if len(deprecated_protocol_issues) > 1:
-        ssl_tls_issues = deprecated_protocol_issues
+        ssl_tls_issues = ssl_tls_issues + deprecated_protocol_issues
+        burp_issue_severity = "High"
 
     common_weak_ciphers = ssl_issues["Common_Weak_Ciphers"]
     common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><br>"]
@@ -128,6 +175,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
 
     if len(insecure_cipher_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + insecure_cipher_issues
+        burp_issue_severity = "High"
 
     weak_ciphers = ssl_issues["Weak_Ciphers"]
     weak_cipher_issues = ["<br><b>Weak Ciphers:</b><br>"]
@@ -191,7 +239,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             [messageInfo],
             "[SecSci SSL/TLS Scanner] Insecure Configuration",
             issue_detail,
-            "Medium"
+            burp_issue_severity
         )
         callbacks.addScanIssue(issue)
 
