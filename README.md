@@ -73,6 +73,10 @@ Once the extension is loaded in BurpSuite:
 - Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
   ![Context Menu](images/context_menu.png)
 
+  **Console Output**
+  ![Console Output](images%2Fconsole_output.png)
+
+
 ## Troubleshooting
 
 | Issue                             | Solution                                                    |
@@ -127,91 +131,114 @@ If encounter issues, bugs or want to request features:
 
 ## Example Output
 
-[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-SSL-TLS-Scanner/blob/main/nmap_ssl_scanner_sample_report.html) to view sample exported report from BurpSuite.
+[ Click here](https://htmlpreview.github.io/?https://github.com/securityscience/SecSci-SSL-TLS-Scanner/blob/main/secsci_ssl_tls_scanner_report.html) to view sample exported report from BurpSuite.
 
 ### Example BurpSuite Issues
 
 ![ssl-tls-issue-detail_1.png](images/ssl-tls-issue-detail_1.png)
 ![ssl-tls-issue-detail_2.png](images/ssl-tls-issue-detail_2.png)
+![ssl-tls-issue-detail_3.png](images%2Fssl-tls-issue-detail_3.png)
+![ssl-tls-issue-detail_4.png](images%2Fssl-tls-issue-detail_4.png)
+![ssl-tls-issue-detail_5.png](images%2Fssl-tls-issue-detail_5.png)
+![ssl-tls-issue-detail_6.png](images%2Fssl-tls-issue-detail_6.png)
 
 ```
-Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-10 13:38 Eastern Daylight Time
-Nmap scan report for 3des.badssl.com (104.154.89.105)
-Host is up (0.043s latency).
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-05-12 10:13 Eastern Daylight Time
+Nmap scan report for expired.badssl.com (104.154.89.105)
+Host is up (0.044s latency).
 rDNS record for 104.154.89.105: 105.89.154.104.bc.googleusercontent.com
 
 PORT    STATE SERVICE  VERSION
 443/tcp open  ssl/http nginx 1.10.3 (Ubuntu)
 | tls-nextprotoneg: 
 |_  http/1.1
-| tls-alpn: 
-|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
 | ssl-cert: Subject: commonName=*.badssl.com
 | Subject Alternative Name: DNS:*.badssl.com, DNS:badssl.com
-| Issuer: commonName=R10/organizationName=Let's Encrypt/countryName=US
+| Issuer: commonName=COMODO RSA Domain Validation Secure Server CA/organizationName=COMODO CA Limited/stateOrProvinceName=Greater Manchester/countryName=GB
 | Public Key type: rsa
 | Public Key bits: 2048
 | Signature Algorithm: sha256WithRSAEncryption
-| Not valid before: 2025-03-11T20:02:47
-| Not valid after:  2025-06-09T20:02:46
-| MD5:   e9b3:deb1:508c:9d1d:e012:4ef1:892c:a97c
-|_SHA-1: 0272:a57f:a7a7:3bab:ed17:729a:c018:2c68:b2ae:f80d
+| Not valid before: 2015-04-09T00:00:00
+| Not valid after:  2015-04-12T23:59:59
+| MD5:   6734:4e61:c043:1cf1:f725:7c1d:6de7:a785
+|_SHA-1: 404b:bd2f:1f4c:c2fd:eef1:3aab:dd52:3ef6:1f1c:71f3
 |_http-server-header: nginx/1.10.3 (Ubuntu)
-|_ssl-date: TLS randomness does not represent time
-| ssl-dh-params: 
-|   VULNERABLE:
-|   Diffie-Hellman Key Exchange Insufficient Group Strength
-|     State: VULNERABLE
-|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
-|       of insufficient strength, especially those using one of a few commonly
-|       shared groups, may be susceptible to passive eavesdropping attacks.
-|     Check results:
-|       WEAK DH GROUP 1
-|             Cipher Suite: TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA
-|             Modulus Type: Safe prime
-|             Modulus Source: nginx/1024-bit MODP group with safe prime modulus
-|             Modulus Length: 1024
-|             Generator Length: 8
-|             Public Key Length: 1024
-|     References:
-|_      https://weakdh.org
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
 |       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C
-|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - D
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
 |       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
 |     compressors: 
 |       NULL
 |     cipher preference: server
 |     warnings: 
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
-|       Key exchange (dh 1024) of lower strength than certificate key
 |   TLSv1.1: 
 |     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
 |       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C
-|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - D
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
 |       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
 |     compressors: 
 |       NULL
 |     cipher preference: server
 |     warnings: 
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
-|       Key exchange (dh 1024) of lower strength than certificate key
 |   TLSv1.2: 
 |     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
 |       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C
-|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - D
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
 |       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
 |     compressors: 
 |       NULL
 |     cipher preference: server
 |     warnings: 
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
-|       Key exchange (dh 1024) of lower strength than certificate key
-|_  least strength: D
+|_  least strength: C
+| tls-alpn: 
+|_  http/1.1
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 30.28 seconds
+Nmap done: 1 IP address (1 host up) scanned in 32.55 seconds
 ```
