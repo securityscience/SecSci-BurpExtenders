@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.1.250511 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.1.250512 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250511
+# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250512
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -12,6 +12,7 @@ from burp import IBurpExtender, IHttpListener, IScanIssue, IContextMenuFactory
 from javax.swing import JMenuItem, JOptionPane
 from java.util import ArrayList
 from java.awt.event import ActionListener
+from datetime import datetime
 import subprocess
 import threading
 import json
@@ -99,29 +100,29 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             if burp_issue_severity not in ["Critical", "High"] and cert_severity in ["Critical", "High"]:
                 burp_issue_severity = "High"
 
-            if isinstance(condition, basestring):
-                if any(op in condition for op in ['<', '>', '=', '!=']):
-                    try:
-                        # Condition is a numeric comparison string
-                        if eval("%s%s" % (match_value, condition)):
-                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
-                    except:
-                        pass
-                elif 'datetime' in condition:
-                    try:
-                        match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
-                        # Condition is a datetime comparison string
-                        if match_value < datetime.utcnow():
-                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
-                    except:
-                        pass
-                else:
-                    try:
-                        # Condition is a regular string
-                        if condition in match_value:
-                            insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
-                    except:
-                        pass
+            #if isinstance(condition, basestring):
+            if any(op in condition for op in ['<', '>', '=', '!=']):
+                try:
+                    # Condition is a numeric comparison string
+                    if eval("%s%s" % (match_value, condition)):
+                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                except:
+                    pass
+            elif 'datetime' in condition:
+                try:
+                    match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
+                    # Condition is a datetime comparison string
+                    if match_value < datetime.utcnow():
+                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                except:
+                    pass
+            else:
+                try:
+                    # Condition is a regular string
+                    if condition in match_value:
+                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                except:
+                    pass
 
     if len(insecure_cert_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + insecure_cert_issues
