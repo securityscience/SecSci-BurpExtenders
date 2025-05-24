@@ -72,10 +72,10 @@ Once the extension is loaded in BurpSuite:
 
 - Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
   - Right-click a request → choose **Extensions → SecSci SSL/TLS Scanner** to run SecSci SSL/TLS Scanner.
-    ![Context Menu](images/context_menu.png)
+    ![Context Menu](images/context-menu.png)
 
     **Console Output**
-    ![Console Output](images%2Fconsole_output.png)
+    ![Console Output](images/console-output.png)
 
 
 ## Troubleshooting
@@ -85,7 +85,6 @@ Once the extension is loaded in BurpSuite:
 | Extension fails to load          | Make sure you’re using Python 2.7 syntax and Jython is set  |
 | Nmap not found                   | Ensure `nmap` is installed and in system's PATH             |
 | No scan output shown             | Check **Extender → Output**, or use `print`/`callbacks.printOutput()` |
-
 
 
 ## **SSL/TLS Test Domains**
