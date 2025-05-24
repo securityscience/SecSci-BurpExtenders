@@ -114,6 +114,9 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 - `https://sha1-intermediate.badssl.com` – SHA-1 intermediate certificate
 - `https://long-extended-subdomain-name-containing-many-letters-and-dashes.badssl.com` – Test for handling long subdomain names
 
+## Integration with Sec-Sci AutoPT
+
+These extensions are designed to operate seamlessly as part of the [SecSci AutoPT](https://www.security-science.com/sec-sci-autopt) automated penetration testing components.
 
 ## License
 
