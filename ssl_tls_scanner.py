@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.1.250512 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.1.250524 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250512
+# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250524
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -84,7 +84,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     burp_issue_severity = "Medium"
 
     insecure_certs = ssl_issues["Insecure_Certs"]
-    insecure_cert_issues = ["<b>Insecure Certificate:</b><br>"]
+    insecure_cert_issues = ["<b>Insecure Certificate:</b><ul>"]
 
     for insecure_cert in insecure_certs:
         pattern = insecure_cert[0]
@@ -105,7 +105,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                 try:
                     # Condition is a numeric comparison string
                     if eval("%s%s" % (match_value, condition)):
-                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                        insecure_cert_issues.append("<li>{0}: <b>{1}</b></li>".format(description, description_value))
                 except:
                     pass
             elif 'datetime' in condition:
@@ -113,132 +113,139 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                     match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
                     # Condition is a datetime comparison string
                     if match_value < datetime.utcnow():
-                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                        insecure_cert_issues.append("<li>{0}: <b>{1}</b></li>".format(description, description_value))
                 except:
                     pass
             else:
                 try:
                     # Condition is a regular string
                     if condition in match_value:
-                        insecure_cert_issues.append("- {0}: <b>{1}</b>".format(description, description_value))
+                        insecure_cert_issues.append("<li>{0}: <b>{1}</b></li>".format(description, description_value))
                 except:
                     pass
+    insecure_cert_issues.append("</ul>")
 
     if len(insecure_cert_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + insecure_cert_issues
 
     deprecated_protocols = ssl_issues["Deprecated_Protocols"]
-    deprecated_protocol_issues = ["<br><b>Deprecated Protocols Detected:</b><br>"]
+    deprecated_protocol_issues = ["<br><b>Deprecated Protocols Detected:</b><ul>"]
 
     for deprecated_protocol in deprecated_protocols:
         if deprecated_protocol[0] in nmap_output:
-            deprecated_protocol_issues.append('- {0}: <b>{1}</b>'.format(deprecated_protocol[0], deprecated_protocol[1]))
+            deprecated_protocol_issues.append('<li>{0}: <b>{1}</b></li>'.format(deprecated_protocol[0], deprecated_protocol[1]))
+    deprecated_protocol_issues.append("</ul>")
 
     if len(deprecated_protocol_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + deprecated_protocol_issues
         burp_issue_severity = "High"
 
     common_weak_ciphers = ssl_issues["Common_Weak_Ciphers"]
-    common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><br>"]
+    common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><ul>"]
 
     for common_weak_cipher in common_weak_ciphers:
         if common_weak_cipher[0] in nmap_output:
             common_weak_cipher_issues.append(
-                '- {0}: '.format(common_weak_cipher[1]) + "<b>Yes</b>")
+                '<li>{0}: '.format(common_weak_cipher[1]) + "<b>Yes</b></li>")
         else:
             common_weak_cipher_issues.append(
-                '- {0}: '.format(common_weak_cipher[1]) + "<b>No</b>")
+                '<li>{0}: '.format(common_weak_cipher[1]) + "<b>No</b></li>")
+    common_weak_cipher_issues.append("</ul>")
 
     if len(common_weak_cipher_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + common_weak_cipher_issues
 
     known_vulnerabilities = ssl_issues["Known_Vulnerabilities"]
-    known_vulnerability_issues = ["<br><b>Known Vulnerabilities:</b><br>"]
+    known_vulnerability_issues = ["<br><b>Known Vulnerabilities:</b><ul>"]
 
     for known_vulnerability in known_vulnerabilities:
         if known_vulnerability[0] in nmap_output:
             known_vulnerability_issues.append(
-                '- {0}: '.format(known_vulnerability[1]) + "<b>Yes</b>")
+                '<li>{0}: '.format(known_vulnerability[1]) + "<b>Yes</b></li>")
         else:
             known_vulnerability_issues.append(
-                '- {0}: '.format(known_vulnerability[1]) + "<b>No</b>")
+                '<li>{0}: '.format(known_vulnerability[1]) + "<b>No</b></li>")
+    known_vulnerability_issues.append("</ul>")
 
     if len(known_vulnerability_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + known_vulnerability_issues
 
     insecure_ciphers = ssl_issues["Insecure_Ciphers"]
-    insecure_cipher_issues = ["<br><b>Insecure Ciphers:</b><br>"]
+    insecure_cipher_issues = ["<br><b>Insecure Ciphers:</b><ul>"]
 
     for insecure_cipher in insecure_ciphers:
         if insecure_cipher[0] in nmap_output:
-            insecure_cipher_issues.append('- <a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b>'
+            insecure_cipher_issues.append('<li><a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b></li>'
                                           .format(insecure_cipher[0], insecure_cipher[1]))
+    insecure_cipher_issues.append("</ul>")
 
     if len(insecure_cipher_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + insecure_cipher_issues
         burp_issue_severity = "High"
 
     weak_ciphers = ssl_issues["Weak_Ciphers"]
-    weak_cipher_issues = ["<br><b>Weak Ciphers:</b><br>"]
+    weak_cipher_issues = ["<br><b>Weak Ciphers:</b><ul>"]
 
     for weak_cipher in weak_ciphers:
+
         if weak_cipher[0] in nmap_output:
-            weak_cipher_issues.append('- <a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b>'
+            weak_cipher_issues.append('<li><a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b></li>'
                                       .format(weak_cipher[0], weak_cipher[1]))
+    weak_cipher_issues.append("</ul>")
 
     if len(weak_cipher_issues) > 1:
         ssl_tls_issues = ssl_tls_issues + weak_cipher_issues
 
     if ssl_tls_issues:
-        issue_detail = """               
-                    The server is configured to support weak SSL/TLS cipher suites, which could allow an attacker to decrypt 
-                    or tamper with encrypted traffic through methods such as cryptographic downgrade attacks, brute force,
-                    or protocol vulnerabilities.<br><br>
-                    During SSL/TLS negotiation with the server, the following weak cipher suites were found to be supported
-                    and indication of weak certificate:<br><br>
-                    """ + "<br>".join(ssl_tls_issues) + """<br><br>
-                    Use of these cipher suites significantly reduces the strength of encryption and may expose sensitive
-                    data to interception or modification. SSL Scanner initiated a TLS handshake and observed these weak
-                    ciphers in the server's response. This indicates the server is not enforcing modern, secure cipher policies.
-                    <br><br><pre>""" + nmap_output + """</pre><br>
-                    <b>Issue background</b><br><br>
-                    Cipher suites determine how TLS encryption is applied between the client and the server.
-                    Older or weak cipher suites use outdated algorithms (e.g., RC4, 3DES, MD5, NULL) that are considered
-                    insecure due to vulnerabilities or insufficient key lengths.<br><br>
-                    Attackers may exploit these weak ciphers to:<br><br>
-                    - Perform downgrade attacks (e.g., forcing use of export-grade or legacy ciphers)<br>
-                    - Exploit specific vulnerabilities like SWEET32, FREAK, or LOGJAM<br>
-                    - Break confidentiality or integrity of communications<br><br>
-                    Modern TLS configurations should use only strong ciphers with forward secrecy and authenticated encryption,
-                    such as those based on AES-GCM or ChaCha20-Poly1305.<br><br>
-                    <b>Issue remediation</b><br><br>
-                    Reconfigure the web server to:<br><br>
-                    - Disable all weak, deprecated, or export-grade cipher suites<br>
-                    - Enable only secure cipher suites that offer forward secrecy (e.g., ECDHE with AES-GCM)<br>
-                    - Prefer TLS 1.2 and 1.3; disable SSL 2.0, SSL 3.0, TLS 1.0, and TLS 1.1<br><br>
-                    Ensure the final configuration is tested using tools such as:<br><br>
-                    - <a href="https://www.ssllabs.com/ssltest/">SSL Labs SSL Test</a><br>
-                    - <a href="https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html">nmap --script ssl-enum-ciphers</a><br>
-                    - <a href="https://nmap.org/nsedoc/scripts/ssl-cert.html">nmap --script ssl-cert</a><br><br>                    
-                    <b>References</b><br><br>
-                    - <a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html">
-                    OWASP: Transport Layer Protection Cheat Sheet</a><br>
-                    - <a href="https://www.ssllabs.com/ssltest/">SSL Labs: SSL Server Test</a><br>
-                    - <a href="https://ssl-config.mozilla.org/">Mozilla SSL Configuration Generator</a><br>
-                    - <a href="https://datatracker.ietf.org/doc/html/rfc7525">RFC 7525: Recommendations for Secure Use of TLS</a><br><br>
-                    <b>Vulnerability classifications</b><br><br>
-                    - <a href="https://cwe.mitre.org/data/definitions/326.html">CWE-326: Inadequate Encryption Strength</a><br>
-                    - <a href="https://cwe.mitre.org/data/definitions/327.html">CWE-327: Use of a Broken or Risky Cryptographic Algorithm</a><br>
-                    - <a href="https://capec.mitre.org/data/definitions/242.html">CAPEC-242: Algorithm Downgrade Attack</a><br>
-                    - <a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2183">CVE-2016-2183 (SWEET32)</a><br>
-                    - <a href="https://www.first.org/cvss/calculator/3.1">CVSS v3.1 Calculator</a><br>
-                    """
+        issue_detail = """
+        The server is configured to support weak SSL/TLS cipher suites, which could allow an attacker to decrypt 
+        or tamper with encrypted traffic through methods such as cryptographic downgrade attacks, brute force,
+        or protocol vulnerabilities.<br><br>
+        During SSL/TLS negotiation with the server, the following weak cipher suites were found to be supported
+        and indication of weak certificate:<br><br>
+        """ + "".join(ssl_tls_issues) + """<br>
+        Use of these cipher suites significantly reduces the strength of encryption and may expose sensitive
+        data to interception or modification. SSL Scanner initiated a TLS handshake and observed these weak
+        ciphers in the server's response. This indicates the server is not enforcing modern, secure cipher policies.
+        <br><br><pre>""" + nmap_output + """</pre><br>
+        <br><b>Issue background</b><br><br>
+        Cipher suites determine how TLS encryption is applied between the client and the server.
+        Older or weak cipher suites use outdated algorithms (e.g., RC4, 3DES, MD5, NULL) that are considered
+        insecure due to vulnerabilities or insufficient key lengths.<br><br>
+        Attackers may exploit these weak ciphers to:
+        <ul><li>Perform downgrade attacks (e.g., forcing use of export-grade or legacy ciphers)</li>
+        <li>Exploit specific vulnerabilities like SWEET32, FREAK, or LOGJAM</li>
+        <li>Break confidentiality or integrity of communications</li></ul>
+        Modern TLS configurations should use only strong ciphers with forward secrecy and authenticated encryption,
+        such as those based on AES-GCM or ChaCha20-Poly1305.<br><br>
+        <br><b>Issue remediation</b><br><br>
+        Reconfigure the web server to:
+        <ul><li>Disable all weak, deprecated, or export-grade cipher suites</li>
+        <li>Enable only secure cipher suites that offer forward secrecy (e.g., ECDHE with AES-GCM)</li>
+        <li>Prefer TLS 1.2 and 1.3; disable SSL 2.0, SSL 3.0, TLS 1.0, and TLS 1.1</li></ul>
+        Ensure the final configuration is tested using tools such as:
+        <ul><li><a href="https://www.ssllabs.com/ssltest/">SSL Labs SSL Test</a></li>
+        <li><a href="https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html">nmap --script ssl-enum-ciphers</a></li>
+        <li><a href="https://nmap.org/nsedoc/scripts/ssl-cert.html">nmap --script ssl-cert</a></li></ul><br>                    
+        <br><b>References</b>
+        <ul><li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html">
+        OWASP: Transport Layer Protection Cheat Sheet</a></li>
+        <li><a href="https://www.ssllabs.com/ssltest/">SSL Labs: SSL Server Test</a></li>
+        <li><a href="https://ssl-config.mozilla.org/">Mozilla SSL Configuration Generator</a></li>
+        <li><a href="https://datatracker.ietf.org/doc/html/rfc7525">RFC 7525: Recommendations for Secure Use of TLS</a></li></ul><br>
+        <br><b>Vulnerability classifications</b>
+        <ul><li><a href="https://cwe.mitre.org/data/definitions/326.html">CWE-326: Inadequate Encryption Strength</a></li>
+        <li><a href="https://cwe.mitre.org/data/definitions/327.html">CWE-327: Use of a Broken or Risky Cryptographic Algorithm</a></li>
+        <li><a href="https://capec.mitre.org/data/definitions/242.html">CAPEC-242: Algorithm Downgrade Attack</a></li>
+        <li><a href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2016-2183">CVE-2016-2183 (SWEET32)</a></li>
+        <li><a href="https://www.first.org/cvss/calculator/3.1">CVSS v3.1 Calculator</a></li></ul>
+        """
 
         issue = SSLScanIssue(
             httpService,
             request_url,
             [messageInfo],
-            "[SecSci SSL/TLS Scanner] Insecure Configuration",
+            "[SecSci SSL/TLS Scan] Insecure Configuration",
             issue_detail,
             burp_issue_severity
         )
