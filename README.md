@@ -68,13 +68,14 @@ Once the extension is loaded in BurpSuite:
      nmap -sV --script ssl*,tls* -p <port> <host>
     ```
   - Look for known SSL/TLS weaknesses (e.g., SSLv2, SSLv3, RC4, null ciphers, heartbleed etc.) and indication of weak certificate.
-  - Report issues directly to the **Scanner → Issues** tab as custom findings
+  - Report issues directly to the **Target** tab → [target_host] → *Issues** pane with detailed output as custom findings
 
 - Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
-  ![Context Menu](images/context_menu.png)
+  - Right-click a request → choose **Extensions → SecSci SSL/TLS Scanner** to run SQLMap.
+    ![Context Menu](images/context_menu.png)
 
-  **Console Output**
-  ![Console Output](images%2Fconsole_output.png)
+    **Console Output**
+    ![Console Output](images%2Fconsole_output.png)
 
 
 ## Troubleshooting
@@ -114,9 +115,11 @@ These subdomains are intentionally configured with specific SSL/TLS issues to ai
 - `https://sha1-intermediate.badssl.com` – SHA-1 intermediate certificate
 - `https://long-extended-subdomain-name-containing-many-letters-and-dashes.badssl.com` – Test for handling long subdomain names
 
+
 ## Integration with Sec-Sci AutoPT
 
-These extensions are designed to operate seamlessly as part of the [SecSci AutoPT](https://www.security-science.com/sec-sci-autopt) automated penetration testing components.
+These extension is designed to operate seamlessly as part of the [Sec-Sci AutoPT](https://www.security-science.com/sec-sci-autopt) automated penetration testing framework.
+
 
 ## License
 
