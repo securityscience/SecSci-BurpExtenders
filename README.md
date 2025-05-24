@@ -71,7 +71,7 @@ Once the extension is loaded in BurpSuite:
   - Report issues directly to the **Target** tab → [target_host] → *Issues** pane with detailed output as custom findings
 
 - Alternatively, SSL/TLS scan can be initiated by right clicking an HTTP *Request* or *Response* from **Proxy**, **Repeater**, or **Target** tab.
-  - Right-click a request → choose **Extensions → SecSci SSL/TLS Scanner** to run SQLMap.
+  - Right-click a request → choose **Extensions → SecSci SSL/TLS Scanner** to run SecSci SSL/TLS Scanner.
     ![Context Menu](images/context_menu.png)
 
     **Console Output**
