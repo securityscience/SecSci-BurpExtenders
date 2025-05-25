@@ -125,7 +125,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                     pass
     insecure_cert_issues.append("</ul>")
 
-    if len(insecure_cert_issues) > 1:
+    if len(insecure_cert_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + insecure_cert_issues
 
     deprecated_protocols = ssl_issues["Deprecated_Protocols"]
@@ -136,7 +136,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
             deprecated_protocol_issues.append('<li>{0}: <b>{1}</b></li>'.format(deprecated_protocol[0], deprecated_protocol[1]))
     deprecated_protocol_issues.append("</ul>")
 
-    if len(deprecated_protocol_issues) > 1:
+    if len(deprecated_protocol_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + deprecated_protocol_issues
         burp_issue_severity = "High"
 
@@ -152,7 +152,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                 '<li>{0}: '.format(common_weak_cipher[1]) + "<b>No</b></li>")
     common_weak_cipher_issues.append("</ul>")
 
-    if len(common_weak_cipher_issues) > 1:
+    if len(common_weak_cipher_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + common_weak_cipher_issues
 
     known_vulnerabilities = ssl_issues["Known_Vulnerabilities"]
@@ -167,7 +167,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                 '<li>{0}: '.format(known_vulnerability[1]) + "<b>No</b></li>")
     known_vulnerability_issues.append("</ul>")
 
-    if len(known_vulnerability_issues) > 1:
+    if len(known_vulnerability_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + known_vulnerability_issues
 
     insecure_ciphers = ssl_issues["Insecure_Ciphers"]
@@ -179,7 +179,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                                           .format(insecure_cipher[0], insecure_cipher[1]))
     insecure_cipher_issues.append("</ul>")
 
-    if len(insecure_cipher_issues) > 1:
+    if len(insecure_cipher_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + insecure_cipher_issues
         burp_issue_severity = "High"
 
@@ -193,7 +193,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                                       .format(weak_cipher[0], weak_cipher[1]))
     weak_cipher_issues.append("</ul>")
 
-    if len(weak_cipher_issues) > 1:
+    if len(weak_cipher_issues) > 2:
         ssl_tls_issues = ssl_tls_issues + weak_cipher_issues
 
     if ssl_tls_issues:
