@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.1.250524 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.1.250525 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250524
+# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250525
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -25,7 +25,8 @@ hosts = []
 
 def is_nmap_installed():
     try:
-        output = subprocess.check_output(["nmap", "-V"], stderr=subprocess.STDOUT)
+        output = subprocess.check_output(["nmap", "--version"], stderr=subprocess.STDOUT)
+        print("[INFO] NMap version: {}".format(output.strip()))
         return True
     except OSError:
         return False
@@ -263,12 +264,12 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
         callbacks.registerHttpListener(self)
         callbacks.registerContextMenuFactory(self)
 
-        print("[*] SSL/TLS Scanner extension loaded.")
-
         if not is_nmap_installed():
             print("[ERROR] Unable to locate NMap.")
             print("[INFO] Check NMap installation directory and add to PATH environment variable.")
             return None
+
+        print("[*] SSL/TLS Scanner extension loaded.")
 
         remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
         fetch_latest_issues(remote_ssl_issues_url)
