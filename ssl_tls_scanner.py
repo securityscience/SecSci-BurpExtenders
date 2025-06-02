@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.1.250525 - May 2025
+# Sec-Sci SSL/TLS Scanner v2.1.250602 - May 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250525
+# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250602
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -13,12 +13,7 @@ from javax.swing import JMenuItem, JOptionPane
 from java.util import ArrayList
 from java.awt.event import ActionListener
 from datetime import datetime
-import subprocess
-import threading
-import json
-import urllib2
-import os
-import re
+import subprocess, threading, json, urllib2, os, re
 
 hosts = []
 
@@ -317,13 +312,16 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
                             continue_scan = JOptionPane.YES_OPTION
 
                         if continue_scan == JOptionPane.YES_OPTION:
+                            timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
                             target = host + ":" + str(port)
 
                             if target not in hosts:
                                 hosts.append(target)
-                                threading.Thread(target=run_nmap_ssl_scan,
+                                thread = threading.Thread(target=run_nmap_ssl_scan,
                                                  args=(host, port, httpService, request_url, messageInfo,
-                                                       self._callbacks)).start()
+                                                       self._callbacks))
+                                thread.name = "SecSci-TLS-Scanner-{}-{}".format(host, timestamp)
+                                thread.start()
                             else:
                                 print("[INFO] {} is already scanned.".format(target))
                     else:
@@ -344,6 +342,7 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
         if str(protocol).lower() != "https" or not self._callbacks.isInScope(request_url):
             return None
 
+        timestamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
         target = host + ":" + str(port)
 
         if target not in hosts:
@@ -351,7 +350,10 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
             # threading.Thread(target=run_nmap_ssl_scan, args=(host, port)).start()
             thread = threading.Thread(target=run_nmap_ssl_scan,
                                       args=(host, port, httpService, request_url, messageInfo, self._callbacks))
+            thread.name = "SecSci-TLS-Scanner-{}-{}".format(host, timestamp)
             thread.start()
+
+        return None
 
             # print("[INFO] No weak cipher support on %s:%s" % (host, port))
 
