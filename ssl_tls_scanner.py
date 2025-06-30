@@ -1,7 +1,7 @@
 # ---------------------------------------
-# Sec-Sci SSL/TLS Scanner v2.1.250602 - May 2025
+# Sec-Sci SSL/TLS Scanner v3.0.250628 - June 2025
 # ---------------------------------------
-# Tool:      Sec-Sci SSL/TLS Scanner v2.1.250602
+# Tool:      Sec-Sci SSL/TLS Scanner v3.0.250628
 # Site:      www.security-science.com
 # Email:     RnD@security-science.com
 # Creator:   ARNEL C. REYES
@@ -16,7 +16,18 @@ from datetime import datetime
 import subprocess, threading, json, urllib2, os, re
 
 hosts = []
+# ssl_scanner = ""
 
+
+def is_sslscan_installed():
+    try:
+        output = subprocess.check_output(["sslscan", "--no-colour", "--version"], stderr=subprocess.STDOUT)
+        print("[INFO] SSLScan version: {}".format(output.strip()))
+        return True
+    except OSError:
+        return False
+    except subprocess.CalledProcessError:
+        return True
 
 def is_nmap_installed():
     try:
@@ -57,22 +68,24 @@ def load_ssl_issues(local_file="ssl_issues.json"):
     return []  # Fallback to empty list if both remote and local fail
 
 
-def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbacks):
-    # nmap_cmd = ["nmap", "--script", "ssl-enum-ciphers", "-p", str(port), host]
-    nmap_cmd = ["nmap", "-sV", "--script", "ssl*,tls*", "-p", str(port), host]
+def run_sslscan(host, port, httpService, request_url, messageInfo, callbacks, scanner):
+    if scanner == "sslscan":
+        sslscan_cmd = ["sslscan", "--no-colour", "--iana-names", "--show-sigs", "--show-certificate", host + ":" + str(port)]
+    else:
+        sslscan_cmd = ["nmap", "-sV", "--script", "ssl*,tls*", "-p", str(port), host]
 
-    # print("[INFO] Running Nmap command: {}".format(nmap_cmd))
+    # print("[INFO] Running SSLScan command: {}".format(sslscan_cmd))
 
     try:
         print("[!] SSL Scan Started for " + host + ":" + str(port))
-        nmap_output = subprocess.check_output(nmap_cmd, stderr=subprocess.STDOUT)
-        nmap_output = nmap_output.decode("utf-8")
-        # print("[DEBUG] Nmap output:\n" + nmap_output)
+        sslscan_output = subprocess.check_output(sslscan_cmd, stderr=subprocess.STDOUT)
+        sslscan_output = sslscan_output.decode("utf-8")
+        # print("[DEBUG] SSLScan output:\n" + sslscan_output)
     except subprocess.TimeoutExpired:
-        print("[ERROR] Nmap scan timed out")
+        print("[ERROR] SSLScan timed out")
         return None
     except Exception as e:
-        print("[ERROR] Nmap scan failed: {}".format(e))
+        print("[ERROR] SSLScan failed: {}".format(e))
         return None
 
     ssl_tls_issues = []
@@ -88,7 +101,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         cert_severity = insecure_cert[2]
         condition = insecure_cert[3] if len(insecure_cert) > 3 else ""
 
-        match_pattern = re.search(pattern, nmap_output)
+        match_pattern = re.search(pattern, sslscan_output)
 
         if match_pattern:
             match_value = match_pattern.group(1)
@@ -106,7 +119,11 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
                     pass
             elif 'datetime' in condition:
                 try:
-                    match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
+                    if scanner == "sslscan":
+                        match_value = datetime.strptime(match_value.strip(), "%b %d %H:%M:%S %Y GMT")
+                        match_value.strftime("%Y-%m-%dT%H:%M:%S")
+                    else:
+                        match_value = datetime.strptime(match_value.strip(), "%Y-%m-%dT%H:%M:%S")
                     # Condition is a datetime comparison string
                     if match_value < datetime.utcnow():
                         insecure_cert_issues.append("<li>{0}: <b>{1}</b></li>".format(description, description_value))
@@ -128,8 +145,8 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     deprecated_protocol_issues = ["<br><b>Deprecated Protocols Detected:</b><ul>"]
 
     for deprecated_protocol in deprecated_protocols:
-        if deprecated_protocol[0] in nmap_output:
-            deprecated_protocol_issues.append('<li>{0}: <b>{1}</b></li>'.format(deprecated_protocol[0], deprecated_protocol[1]))
+        if deprecated_protocol[0] in sslscan_output:
+            deprecated_protocol_issues.append('<li>{0}: <b>{1}</b></li>'.format(deprecated_protocol[0][:-1], deprecated_protocol[1]))
     deprecated_protocol_issues.append("</ul>")
 
     if len(deprecated_protocol_issues) > 2:
@@ -140,7 +157,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     common_weak_cipher_issues = ["<br><b>Common Weak Ciphers:</b><ul>"]
 
     for common_weak_cipher in common_weak_ciphers:
-        if common_weak_cipher[0] in nmap_output:
+        if common_weak_cipher[0] in sslscan_output:
             common_weak_cipher_issues.append(
                 '<li>{0}: '.format(common_weak_cipher[1]) + "<b>Yes</b></li>")
         else:
@@ -155,7 +172,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     known_vulnerability_issues = ["<br><b>Known Vulnerabilities:</b><ul>"]
 
     for known_vulnerability in known_vulnerabilities:
-        if known_vulnerability[0] in nmap_output:
+        if known_vulnerability[0] in sslscan_output:
             known_vulnerability_issues.append(
                 '<li>{0}: '.format(known_vulnerability[1]) + "<b>Yes</b></li>")
         else:
@@ -170,7 +187,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
     insecure_cipher_issues = ["<br><b>Insecure Ciphers:</b><ul>"]
 
     for insecure_cipher in insecure_ciphers:
-        if insecure_cipher[0] in nmap_output:
+        if insecure_cipher[0] in sslscan_output:
             insecure_cipher_issues.append('<li><a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b></li>'
                                           .format(insecure_cipher[0], insecure_cipher[1]))
     insecure_cipher_issues.append("</ul>")
@@ -184,7 +201,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
 
     for weak_cipher in weak_ciphers:
 
-        if weak_cipher[0] in nmap_output:
+        if weak_cipher[0] in sslscan_output:
             weak_cipher_issues.append('<li><a href="https://ciphersuite.info/cs/TLS_{0}">TLS_{0}</a>: <b>{1}</b></li>'
                                       .format(weak_cipher[0], weak_cipher[1]))
     weak_cipher_issues.append("</ul>")
@@ -203,7 +220,7 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         Use of these cipher suites significantly reduces the strength of encryption and may expose sensitive
         data to interception or modification. SSL Scanner initiated a TLS handshake and observed these weak
         ciphers in the server's response. This indicates the server is not enforcing modern, secure cipher policies.
-        <br><br><pre>""" + nmap_output + """</pre><br>
+        <br><br><pre>""" + sslscan_output + """</pre><br>
         <br><b>Issue background</b><br><br>
         Cipher suites determine how TLS encryption is applied between the client and the server.
         Older or weak cipher suites use outdated algorithms (e.g., RC4, 3DES, MD5, NULL) that are considered
@@ -222,7 +239,8 @@ def run_nmap_ssl_scan(host, port, httpService, request_url, messageInfo, callbac
         Ensure the final configuration is tested using tools such as:
         <ul><li><a href="https://www.ssllabs.com/ssltest/">SSL Labs SSL Test</a></li>
         <li><a href="https://nmap.org/nsedoc/scripts/ssl-enum-ciphers.html">nmap --script ssl-enum-ciphers</a></li>
-        <li><a href="https://nmap.org/nsedoc/scripts/ssl-cert.html">nmap --script ssl-cert</a></li></ul><br>                    
+        <li><a href="https://nmap.org/nsedoc/scripts/ssl-cert.html">nmap --script ssl-cert</a></li>
+        <li><a href="https://github.com/securityscience/sslscan">sslscan</a></li></ul><br>                    
         <br><b>References</b>
         <ul><li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Security_Cheat_Sheet.html">
         OWASP: Transport Layer Protection Cheat Sheet</a></li>
@@ -255,34 +273,49 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
     def registerExtenderCallbacks(self, callbacks):
         self._callbacks = callbacks
         self._helpers = callbacks.getHelpers()
+        self._ssl_scanner = ""
         callbacks.setExtensionName("SecSci SSL/TLS Scanner")
         callbacks.registerHttpListener(self)
         callbacks.registerContextMenuFactory(self)
 
-        if not is_nmap_installed():
-            print("[ERROR] Unable to locate NMap.")
-            print("[INFO] Check NMap installation directory and add to PATH environment variable.")
+        # if not is_nmap_installed():
+        self._sslscan_installed = is_sslscan_installed()
+        self._nmap_installed = is_nmap_installed()
+        if not self._sslscan_installed and not self._nmap_installed:
+            print("[ERROR] Unable to locate SSLScan or NMap.")
+            print("[INFO] Check SSLScan or NMap installation directory and add to PATH environment variable.")
             return None
+
+        self._ssl_scanner = "sslscan" if self._sslscan_installed else "nmap"
 
         print("[*] SSL/TLS Scanner extension loaded.")
 
         remote_ssl_issues_url = "https://raw.githubusercontent.com/securityscience/SecSci-SSL-TLS-Scanner/refs/heads/main/ssl_issues.json"
         fetch_latest_issues(remote_ssl_issues_url)
 
+        return None
+
     def createMenuItems(self, invocation):
         context_menu = ArrayList()
 
-        context_menu_item = JMenuItem("SecSci SSL/TLS Scanner")
-        context_menu_item.addActionListener(self._menuSSLScanner(invocation, self._callbacks, self._helpers))
-        context_menu.add(context_menu_item)
+        if self._nmap_installed:
+            context_menu_item_nmap = JMenuItem("Use NMAP")
+            context_menu_item_nmap.addActionListener(self._menuSSLScanner(invocation, self._callbacks, self._helpers, "nmap"))
+            context_menu.add(context_menu_item_nmap)
+
+        if self._sslscan_installed:
+            context_menu_item_sslscan = JMenuItem("Use SSLScan")
+            context_menu_item_sslscan.addActionListener(self._menuSSLScanner(invocation, self._callbacks, self._helpers, "sslscan"))
+            context_menu.add(context_menu_item_sslscan)
 
         return context_menu
 
     class _menuSSLScanner(ActionListener):
-        def __init__(self, invocation, callbacks, helpers):
+        def __init__(self, invocation, callbacks, helpers, scanner):
             self._invocation = invocation
             self._callbacks = callbacks
             self._helpers = helpers
+            self._scanner = scanner
 
         def actionPerformed(self, event):
             selected_messages = self._invocation.getSelectedMessages()
@@ -317,9 +350,14 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
 
                             if target not in hosts:
                                 hosts.append(target)
-                                thread = threading.Thread(target=run_nmap_ssl_scan,
-                                                 args=(host, port, httpService, request_url, messageInfo,
-                                                       self._callbacks))
+                                if self._scanner == "nmap":
+                                    thread = threading.Thread(target=run_sslscan,
+                                                     args=(host, port, httpService, request_url, messageInfo,
+                                                           self._callbacks, "nmap"))
+                                else:
+                                    thread = threading.Thread(target=run_sslscan,
+                                                              args=(host, port, httpService, request_url, messageInfo,
+                                                                    self._callbacks, "sslscan"))
                                 thread.name = "SecSci-TLS-Scanner-{}-{}".format(host, timestamp)
                                 thread.start()
                             else:
@@ -348,8 +386,9 @@ class BurpExtender(IBurpExtender, IHttpListener, IContextMenuFactory):
         if target not in hosts:
             hosts.append(target)
             # threading.Thread(target=run_nmap_ssl_scan, args=(host, port)).start()
-            thread = threading.Thread(target=run_nmap_ssl_scan,
-                                      args=(host, port, httpService, request_url, messageInfo, self._callbacks))
+            # acr
+            thread = threading.Thread(target=run_sslscan,
+                                      args=(host, port, httpService, request_url, messageInfo, self._callbacks, self._ssl_scanner))
             thread.name = "SecSci-TLS-Scanner-{}-{}".format(host, timestamp)
             thread.start()
 
@@ -378,4 +417,3 @@ class SSLScanIssue(IScanIssue):
     def getRemediationDetail(self): return None
     def getHttpMessages(self): return self._httpMessages
     def getHttpService(self): return self._httpService
-
