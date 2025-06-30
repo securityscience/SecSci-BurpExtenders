@@ -1,1444 +1,1477 @@
 {
-  "Insecure_Certs": [
-    [
-      "Subject: commonName=\\*\\.([^\\n]+)",
-      "Wildcard certificate",
-      "Medium"
-    ],
-    [
-      "Issuer: commonName=(.+)",
-      "Certificate Issued by Old CA",
-      "Medium",
-      "COMODO"
-    ],
-    [
-      "Public Key bits:\\s+(\\d+)",
-      "Weak Key Size",
-      "Medium",
-      "< 2048"
-    ],
-    [
-      "Signature Algorithm:\\s+(sha1WithRSAEncryption|md5WithRSAEncryption)",
-      "Weak Signature Algorithm",
-      "Critical"
-    ],
-    [
-      "Not valid after:\\s*([^\\n]+)",
-      "Expired Certificate",
-      "Critical",
-      "datetime"
-    ],
-    [
-      "(SHA-1:)\\s*([0-9a-fA-F:]+)",
-      "Certificate Uses Weak Hash Fingerprint",
-      "High",
-      "SHA-1"
-    ],
-    [
-      "(MD5:)\\s*([0-9a-fA-F:]+)",
-      "Certificate Uses Weak Hash Fingerprint",
-      "High",
-      "MD5"
-    ],
-    [
-      "ssl-date:(.+)",
-      "TLS Randomness",
-      "Medium",
-      "does not represent time"
+    "Weak_Ciphers": [
+        [
+            "DH_DSS_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_128_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_256_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_256_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_DSS_WITH_SEED_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_128_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_256_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_256_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_DSS_WITH_SEED_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_3DES_EDE_CBC_SHA", 
+            "3DES LOGJAM SWEET32 LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_128_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_128_CBC_SHA256", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_128_CCM", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_256_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_256_CBC_SHA384", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_256_CCM", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_ARIA_128_CBC_SHA256", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_ARIA_256_CBC_SHA384", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_CHACHA20_POLY1305_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES LOGJAM SWEET32 LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_128_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_128_CBC_SHA256", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_128_CCM", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_128_CCM_8", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_256_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_256_CBC_SHA256", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_256_CCM", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_256_CCM_8", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_ARIA_128_CBC_SHA256", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_ARIA_256_CBC_SHA384", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_CHACHA20_POLY1305_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DHE_RSA_WITH_SEED_CBC_SHA", 
+            "LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_256_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_RSA_WITH_SEED_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDHE_PSK_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "ECDH_RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_ARIA_256_CBC_SHA384", 
+            "LOGJAM LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "KRB5_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "KRB5_WITH_IDEA_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_DHE_WITH_AES_128_CCM_8", 
+            "LOGJAM"
+        ], 
+        [
+            "PSK_DHE_WITH_AES_256_CCM_8", 
+            "LOGJAM"
+        ], 
+        [
+            "PSK_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "PSK_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_AES_128_CCM", 
+            ""
+        ], 
+        [
+            "PSK_WITH_AES_128_CCM_8", 
+            ""
+        ], 
+        [
+            "PSK_WITH_AES_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "PSK_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_AES_256_CCM", 
+            ""
+        ], 
+        [
+            "PSK_WITH_AES_256_CCM_8", 
+            ""
+        ], 
+        [
+            "PSK_WITH_AES_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "PSK_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_ARIA_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "PSK_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "PSK_WITH_ARIA_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "PSK_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "PSK_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA"
+        ], 
+        [
+            "PSK_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "PSK_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA"
+        ], 
+        [
+            "PSK_WITH_CHACHA20_POLY1305_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_PSK_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_AES_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_PSK_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_AES_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_AES_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "RSA_PSK_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_ARIA_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_PSK_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_ARIA_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "RSA_PSK_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA"
+        ], 
+        [
+            "RSA_PSK_WITH_CAMELLIA_256_CBC_SHA384", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_PSK_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA"
+        ], 
+        [
+            "RSA_PSK_WITH_CHACHA20_POLY1305_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "RSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_AES_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_AES_128_CCM", 
+            ""
+        ], 
+        [
+            "RSA_WITH_AES_128_CCM_8", 
+            ""
+        ], 
+        [
+            "RSA_WITH_AES_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_AES_256_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_AES_256_CCM", 
+            ""
+        ], 
+        [
+            "RSA_WITH_AES_256_CCM_8", 
+            ""
+        ], 
+        [
+            "RSA_WITH_AES_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "RSA_WITH_ARIA_128_CBC_SHA256", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_ARIA_128_GCM_SHA256", 
+            ""
+        ], 
+        [
+            "RSA_WITH_ARIA_256_CBC_SHA384", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_ARIA_256_GCM_SHA384", 
+            ""
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA"
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA LUCKY13"
+        ], 
+        [
+            "RSA_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA"
+        ], 
+        [
+            "RSA_WITH_IDEA_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "RSA_WITH_SEED_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_DSS_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "SRP_SHA_DSS_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_DSS_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "SRP_SHA_RSA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_RSA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_WITH_3DES_EDE_CBC_SHA", 
+            "3DES SWEET32 LUCKY13"
+        ], 
+        [
+            "SRP_SHA_WITH_AES_128_CBC_SHA", 
+            "LUCKY13"
+        ], 
+        [
+            "SRP_SHA_WITH_AES_256_CBC_SHA", 
+            "LUCKY13"
+        ]
+    ], 
+    "Known_Vulnerabilities": [
+        [
+            "Heartbleed", 
+            "Heartbleed"
+        ], 
+        [
+            "CCS", 
+            "CCS Injection"
+        ], 
+        [
+            "_FALLBACK_SCSV", 
+            "TLS_FALLBACK_SCSV Support"
+        ], 
+        [
+            "POODLE", 
+            "POODLE SSLv3"
+        ], 
+        [
+            "SWEET32", 
+            "SWEET32"
+        ], 
+        [
+            "DROWN", 
+            "DROWN"
+        ], 
+        [
+            "FREAK", 
+            "FREAK"
+        ], 
+        [
+            "LUCKY13", 
+            "LUCKY13"
+        ], 
+        [
+            "CRIME", 
+            "CRIME (TLS)"
+        ], 
+        [
+            "BREACH", 
+            "BREACH"
+        ], 
+        [
+            "BEAST", 
+            "BEAST"
+        ], 
+        [
+            "LOGJAM", 
+            "LOGJAM (Export)"
+        ]
+    ], 
+    "Common_Weak_Ciphers": [
+        [
+            "_NULL", 
+            "NULL Cipher (No Encryption)"
+        ], 
+        [
+            "_ANON", 
+            "ANON Cipher (No Authentication)"
+        ], 
+        [
+            "_EXP", 
+            "EXP Cipher (Without ADH+NULL)"
+        ], 
+        [
+            "_LOW", 
+            "LOW Cipher (64 Bit + DES Encryption)"
+        ], 
+        [
+            "_SEED", 
+            "SEED Cipher"
+        ], 
+        [
+            "_IDEA", 
+            "IDEA Cipher"
+        ], 
+        [
+            "_RC2", 
+            "RC2 Cipher"
+        ], 
+        [
+            "_RC4", 
+            "RC4 Cipher"
+        ], 
+        [
+            "_DES", 
+            "DES Cipher"
+        ], 
+        [
+            "_3DES", 
+            "3DES Cipher (Medium)"
+        ], 
+        [
+            "_MD5", 
+            "MD5 Cipher"
+        ], 
+        [
+            "CBC_SHA", 
+            "CBC SHA Cipher"
+        ], 
+        [
+            "_CAMELLIA", 
+            "CAMELLIA Cipher"
+        ], 
+        [
+            "CRIME", 
+            "CRIME Cipher"
+        ]
+    ], 
+    "Deprecated_Protocols": [
+        [
+            "SSLv2:",
+            "DROWN"
+        ],
+        [
+            "SSLv2     enabled",
+            "DROWN"
+        ],
+        [
+            "SSLv3:",
+            "POODLE"
+        ],
+        [
+            "SSLv3     enabled",
+            "POODLE"
+        ],
+        [
+            "TLSv1.0:",
+            "BEAST"
+        ],
+        [
+            "TLSv1.0   enabled",
+            "BEAST"
+        ],
+        [
+            "TLSv1.1:",
+            "LACK OF AEAD"
+        ],
+        [
+            "TLSv1.1   enabled",
+            "LACK OF AEAD"
+        ]
+    ], 
+    "Insecure_Certs": [
+        [
+            "Subject: commonName=\\*\\.([^\\n]+)", 
+            "Wildcard certificate", 
+            "Medium"
+        ],
+        [
+            "Subject:\\s+\\*\\.([^\\n]+)",
+            "Wildcard certificate",
+            "Medium"
+        ],
+        [
+            "Issuer: commonName=(.+)", 
+            "Certificate Issued by Old CA", 
+            "Medium", 
+            "COMODO"
+        ],
+        [
+            "Issuer:\\s+(.+)",
+            "Certificate Issued by Old CA",
+            "Medium",
+            "COMODO"
+        ],
+        [
+            "Public Key bits:\\s+(\\d+)", 
+            "Weak Key Size", 
+            "Medium", 
+            "< 2048"
+        ],
+        [
+            "Public Key: \\((\\d+) bit\\)",
+            "Weak Key Size",
+            "Medium",
+            "< 2048"
+        ],
+        [
+            "Signature Algorithm:\\s+(sha1WithRSAEncryption|md5WithRSAEncryption)",
+            "Weak Signature Algorithm", 
+            "Critical"
+        ], 
+        [
+            "Not valid after:\\s*([^\\n]+)", 
+            "Expired Certificate", 
+            "Critical", 
+            "datetime"
+        ],
+        [
+            "(SHA-1:)\\s*([0-9a-fA-F:]+)", 
+            "Certificate Uses Weak Hash Fingerprint", 
+            "High", 
+            "SHA-1"
+        ], 
+        [
+            "(MD5:)\\s*([0-9a-fA-F:]+)", 
+            "Certificate Uses Weak Hash Fingerprint", 
+            "High", 
+            "MD5"
+        ], 
+        [
+            "ssl-date:(.+)", 
+            "TLS Randomness", 
+            "Medium", 
+            "does not represent time"
+        ]
+    ], 
+    "Insecure_Ciphers": [
+        [
+            "DH_anon_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_EXPORT_WITH_RC4_40_MD5", 
+            "FREAK RC4LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_3DES_EDE_CBC_SHA", 
+            "3DES POODLE LOGJAM SWEET32 LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_AES_128_CBC_SHA", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_AES_128_CBC_SHA256", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_AES_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_AES_256_CBC_SHA", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_AES_256_CBC_SHA256", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_AES_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_ARIA_128_CBC_SHA256", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_ARIA_128_GCM_SHA256", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_ARIA_256_CBC_SHA384", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_ARIA_256_GCM_SHA384", 
+            "LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_128_CBC_SHA", 
+            "CAMELLIA POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_128_CBC_SHA256", 
+            "CAMELLIA POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_128_GCM_SHA256", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_256_CBC_SHA", 
+            "CAMELLIA POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_256_CBC_SHA256", 
+            "CAMELLIA POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_CAMELLIA_256_GCM_SHA384", 
+            "CAMELLIA LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_DES_CBC_SHA", 
+            "DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_anon_WITH_RC4_128_MD5", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "DH_anon_WITH_SEED_CBC_SHA", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_DSS_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_DSS_WITH_DES_CBC_SHA", 
+            "DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_DSS_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_DSS_WITH_DES_CBC_SHA", 
+            "DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_PSK_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_NULL_SHA256", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_NULL_SHA384", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "DHE_PSK_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "DHE_RSA_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DHE_RSA_WITH_DES_CBC_SHA", 
+            "DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_RSA_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "DH_RSA_WITH_DES_CBC_SHA", 
+            "DES POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "ECDH_anon_WITH_3DES_EDE_CBC_SHA", 
+            "3DES POODLE LOGJAM SWEET32 LUCKY13"
+        ], 
+        [
+            "ECDH_anon_WITH_AES_128_CBC_SHA", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "ECDH_anon_WITH_AES_256_CBC_SHA", 
+            "POODLE LOGJAM LUCKY13"
+        ], 
+        [
+            "ECDH_anon_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDH_anon_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDH_ECDSA_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDHE_ECDSA_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "ECDHE_PSK_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDHE_PSK_WITH_NULL_SHA256", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDHE_PSK_WITH_NULL_SHA384", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDHE_PSK_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "ECDHE_RSA_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDHE_RSA_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_NULL_SHA", 
+            "NULL LOGJAM"
+        ], 
+        [
+            "ECDH_RSA_WITH_RC4_128_SHA", 
+            "RC4 LOGJAM"
+        ], 
+        [
+            "GOSTR341112_256_WITH_28147_CNT_IMIT", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_KUZNYECHIK_CTR_OMAC", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_KUZNYECHIK_MGM_L", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_KUZNYECHIK_MGM_S", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_MAGMA_CTR_OMAC", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_MAGMA_MGM_L", 
+            ""
+        ], 
+        [
+            "GOSTR341112_256_WITH_MAGMA_MGM_S", 
+            ""
+        ], 
+        [
+            "KRB5_EXPORT_WITH_DES_CBC_40_MD5", 
+            "FREAK DES POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_EXPORT_WITH_DES_CBC_40_SHA", 
+            "FREAK DES POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_EXPORT_WITH_RC2_CBC_40_MD5", 
+            "FREAK POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_EXPORT_WITH_RC2_CBC_40_SHA", 
+            "FREAK POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_EXPORT_WITH_RC4_40_MD5", 
+            "FREAK RC4"
+        ], 
+        [
+            "KRB5_EXPORT_WITH_RC4_40_SHA", 
+            "FREAK RC4"
+        ], 
+        [
+            "KRB5_WITH_3DES_EDE_CBC_MD5", 
+            "3DES POODLE SWEET32 LUCKY13"
+        ], 
+        [
+            "KRB5_WITH_DES_CBC_MD5", 
+            "DES POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_WITH_DES_CBC_SHA", 
+            "DES POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_WITH_IDEA_CBC_MD5", 
+            "POODLE LUCKY13"
+        ], 
+        [
+            "KRB5_WITH_RC4_128_MD5", 
+            "RC4"
+        ], 
+        [
+            "KRB5_WITH_RC4_128_SHA", 
+            "RC4"
+        ], 
+        [
+            "NULL_WITH_NULL_NULL", 
+            "NULL"
+        ], 
+        [
+            "PSK_WITH_NULL_SHA", 
+            "NULL"
+        ], 
+        [
+            "PSK_WITH_NULL_SHA256", 
+            "NULL"
+        ], 
+        [
+            "PSK_WITH_NULL_SHA384", 
+            "NULL"
+        ], 
+        [
+            "PSK_WITH_RC4_128_SHA", 
+            "RC4"
+        ], 
+        [
+            "RSA_EXPORT_WITH_DES40_CBC_SHA", 
+            "FREAK DES POODLE LUCKY13"
+        ], 
+        [
+            "RSA_EXPORT_WITH_RC2_CBC_40_MD5", 
+            "FREAK POODLE LUCKY13"
+        ], 
+        [
+            "RSA_EXPORT_WITH_RC4_40_MD5", 
+            "FREAK RC4"
+        ], 
+        [
+            "RSA_PSK_WITH_NULL_SHA", 
+            "NULL"
+        ], 
+        [
+            "RSA_PSK_WITH_NULL_SHA256", 
+            "NULL"
+        ], 
+        [
+            "RSA_PSK_WITH_NULL_SHA384", 
+            "NULL"
+        ], 
+        [
+            "RSA_PSK_WITH_RC4_128_SHA", 
+            "RC4"
+        ], 
+        [
+            "RSA_WITH_DES_CBC_SHA", 
+            "DES POODLE LUCKY13"
+        ], 
+        [
+            "RSA_WITH_NULL_MD5", 
+            "NULL"
+        ], 
+        [
+            "RSA_WITH_NULL_SHA", 
+            "NULL"
+        ], 
+        [
+            "RSA_WITH_NULL_SHA256", 
+            "NULL"
+        ], 
+        [
+            "RSA_WITH_RC4_128_MD5", 
+            "RC4"
+        ], 
+        [
+            "RSA_WITH_RC4_128_SHA", 
+            "RC4"
+        ], 
+        [
+            "SHA256_SHA256", 
+            ""
+        ], 
+        [
+            "SHA384_SHA384", 
+            ""
+        ], 
+        [
+            "SM4_CCM_SM3", 
+            ""
+        ], 
+        [
+            "SM4_GCM_SM3", 
+            ""
+        ]
     ]
-  ],
-  "Weak_Ciphers": [
-    [
-      "DH_DSS_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_128_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_256_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_256_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_DSS_WITH_SEED_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_128_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_256_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_256_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_DSS_WITH_SEED_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_3DES_EDE_CBC_SHA",
-      "3DES LOGJAM SWEET32 LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_AES_128_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_AES_128_CBC_SHA256",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_AES_128_CCM",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_AES_256_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_AES_256_CBC_SHA384",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_AES_256_CCM",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_ARIA_128_CBC_SHA256",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_ARIA_256_CBC_SHA384",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_CHACHA20_POLY1305_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES LOGJAM SWEET32 LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_AES_128_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_AES_128_CBC_SHA256",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_AES_128_CCM",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_AES_128_CCM_8",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_AES_256_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_AES_256_CBC_SHA256",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_AES_256_CCM",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_AES_256_CCM_8",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_ARIA_128_CBC_SHA256",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_ARIA_256_CBC_SHA384",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DHE_RSA_WITH_SEED_CBC_SHA",
-      "LOGJAM LUCKY13"
-    ],
-    [
-      "DH_RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_256_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_RSA_WITH_SEED_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_AES_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_AES_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDHE_PSK_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_AES_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "ECDH_RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_256_CBC_SHA384",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_ARIA_256_CBC_SHA384",
-      "LOGJAM LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "KRB5_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "KRB5_WITH_IDEA_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "PSK_DHE_WITH_AES_128_CCM_8",
-      "LOGJAM"
-    ],
-    [
-      "PSK_DHE_WITH_AES_256_CCM_8",
-      "LOGJAM"
-    ],
-    [
-      "PSK_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "PSK_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_AES_128_CCM",
-      ""
-    ],
-    [
-      "PSK_WITH_AES_128_CCM_8",
-      ""
-    ],
-    [
-      "PSK_WITH_AES_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "PSK_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_AES_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_AES_256_CCM",
-      ""
-    ],
-    [
-      "PSK_WITH_AES_256_CCM_8",
-      ""
-    ],
-    [
-      "PSK_WITH_AES_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "PSK_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_ARIA_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "PSK_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "PSK_WITH_ARIA_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "PSK_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "PSK_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA"
-    ],
-    [
-      "PSK_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "PSK_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA"
-    ],
-    [
-      "PSK_WITH_CHACHA20_POLY1305_SHA256",
-      ""
-    ],
-    [
-      "RSA_PSK_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_AES_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "RSA_PSK_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_AES_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_AES_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "RSA_PSK_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_ARIA_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "RSA_PSK_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_ARIA_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "RSA_PSK_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA"
-    ],
-    [
-      "RSA_PSK_WITH_CAMELLIA_256_CBC_SHA384",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_PSK_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA"
-    ],
-    [
-      "RSA_PSK_WITH_CHACHA20_POLY1305_SHA256",
-      ""
-    ],
-    [
-      "RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "RSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_AES_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_AES_128_CCM",
-      ""
-    ],
-    [
-      "RSA_WITH_AES_128_CCM_8",
-      ""
-    ],
-    [
-      "RSA_WITH_AES_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "RSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_AES_256_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_AES_256_CCM",
-      ""
-    ],
-    [
-      "RSA_WITH_AES_256_CCM_8",
-      ""
-    ],
-    [
-      "RSA_WITH_AES_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "RSA_WITH_ARIA_128_CBC_SHA256",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_ARIA_128_GCM_SHA256",
-      ""
-    ],
-    [
-      "RSA_WITH_ARIA_256_CBC_SHA384",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_ARIA_256_GCM_SHA384",
-      ""
-    ],
-    [
-      "RSA_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA"
-    ],
-    [
-      "RSA_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA LUCKY13"
-    ],
-    [
-      "RSA_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA"
-    ],
-    [
-      "RSA_WITH_IDEA_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "RSA_WITH_SEED_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_DSS_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "SRP_SHA_DSS_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_DSS_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_RSA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "SRP_SHA_RSA_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_RSA_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_WITH_3DES_EDE_CBC_SHA",
-      "3DES SWEET32 LUCKY13"
-    ],
-    [
-      "SRP_SHA_WITH_AES_128_CBC_SHA",
-      "LUCKY13"
-    ],
-    [
-      "SRP_SHA_WITH_AES_256_CBC_SHA",
-      "LUCKY13"
-    ]
-  ],
-  "Known_Vulnerabilities": [
-    [
-      "Heartbleed",
-      "Heartbleed"
-    ],
-    [
-      "CCS",
-      "CCS Injection"
-    ],
-    [
-      "_FALLBACK_SCSV",
-      "TLS_FALLBACK_SCSV Support"
-    ],
-    [
-      "POODLE",
-      "POODLE SSLv3"
-    ],
-    [
-      "SWEET32",
-      "SWEET32"
-    ],
-    [
-      "DROWN",
-      "DROWN"
-    ],
-    [
-      "FREAK",
-      "FREAK"
-    ],
-    [
-      "LUCKY13",
-      "LUCKY13"
-    ],
-    [
-      "CRIME",
-      "CRIME (TLS)"
-    ],
-    [
-      "BREACH",
-      "BREACH"
-    ],
-    [
-      "BEAST",
-      "BEAST"
-    ],
-    [
-      "LOGJAM",
-      "LOGJAM (Export)"
-    ]
-  ],
-  "Common_Weak_Ciphers": [
-    [
-      "_NULL",
-      "NULL Cipher (No Encryption)"
-    ],
-    [
-      "_ANON",
-      "ANON Cipher (No Authentication)"
-    ],
-    [
-      "_EXP",
-      "EXP Cipher (Without ADH+NULL)"
-    ],
-    [
-      "_LOW",
-      "LOW Cipher (64 Bit + DES Encryption)"
-    ],
-    [
-      "_SEED",
-      "SEED Cipher"
-    ],
-    [
-      "_IDEA",
-      "IDEA Cipher"
-    ],
-    [
-      "_RC2",
-      "RC2 Cipher"
-    ],
-    [
-      "_RC4",
-      "RC4 Cipher"
-    ],
-    [
-      "_DES",
-      "DES Cipher"
-    ],
-    [
-      "_3DES",
-      "3DES Cipher (Medium)"
-    ],
-    [
-      "_MD5",
-      "MD5 Cipher"
-    ],
-    [
-      "CBC_SHA",
-      "CBC SHA Cipher"
-    ],
-    [
-      "_CAMELLIA",
-      "CAMELLIA Cipher"
-    ],
-    [
-      "CRIME",
-      "CRIME Cipher"
-    ]
-  ],
-  "Deprecated_Protocols": [
-    [
-      "SSLv2",
-      "DROWN"
-    ],
-    [
-      "SSLv3",
-      "POODLE"
-    ],
-    [
-      "TLSv1.0",
-      "BEAST"
-    ],
-    [
-      "TLSv1.1",
-      "LACK OF AEAD"
-    ]
-  ],
-  "Insecure_Ciphers": [
-    [
-      "DH_anon_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_EXPORT_WITH_RC4_40_MD5",
-      "FREAK RC4LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_3DES_EDE_CBC_SHA",
-      "3DES POODLE LOGJAM SWEET32 LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_AES_128_CBC_SHA",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_AES_128_CBC_SHA256",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_AES_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_AES_256_CBC_SHA",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_AES_256_CBC_SHA256",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_AES_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_ARIA_128_CBC_SHA256",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_ARIA_128_GCM_SHA256",
-      "LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_ARIA_256_CBC_SHA384",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_ARIA_256_GCM_SHA384",
-      "LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_128_CBC_SHA",
-      "CAMELLIA POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_128_CBC_SHA256",
-      "CAMELLIA POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_128_GCM_SHA256",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_256_CBC_SHA",
-      "CAMELLIA POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_256_CBC_SHA256",
-      "CAMELLIA POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_CAMELLIA_256_GCM_SHA384",
-      "CAMELLIA LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_DES_CBC_SHA",
-      "DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_anon_WITH_RC4_128_MD5",
-      "RC4 LOGJAM"
-    ],
-    [
-      "DH_anon_WITH_SEED_CBC_SHA",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_DSS_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_DSS_WITH_DES_CBC_SHA",
-      "DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_DSS_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_DSS_WITH_DES_CBC_SHA",
-      "DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_PSK_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_NULL_SHA256",
-      "NULL LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_NULL_SHA384",
-      "NULL LOGJAM"
-    ],
-    [
-      "DHE_PSK_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "DHE_RSA_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DHE_RSA_WITH_DES_CBC_SHA",
-      "DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_RSA_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "DH_RSA_WITH_DES_CBC_SHA",
-      "DES POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "ECDH_anon_WITH_3DES_EDE_CBC_SHA",
-      "3DES POODLE LOGJAM SWEET32 LUCKY13"
-    ],
-    [
-      "ECDH_anon_WITH_AES_128_CBC_SHA",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "ECDH_anon_WITH_AES_256_CBC_SHA",
-      "POODLE LOGJAM LUCKY13"
-    ],
-    [
-      "ECDH_anon_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDH_anon_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDH_ECDSA_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDHE_ECDSA_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "ECDHE_PSK_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDHE_PSK_WITH_NULL_SHA256",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDHE_PSK_WITH_NULL_SHA384",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDHE_PSK_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "ECDHE_RSA_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDHE_RSA_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_NULL_SHA",
-      "NULL LOGJAM"
-    ],
-    [
-      "ECDH_RSA_WITH_RC4_128_SHA",
-      "RC4 LOGJAM"
-    ],
-    [
-      "GOSTR341112_256_WITH_28147_CNT_IMIT",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_KUZNYECHIK_CTR_OMAC",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_KUZNYECHIK_MGM_L",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_KUZNYECHIK_MGM_S",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_MAGMA_CTR_OMAC",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_MAGMA_MGM_L",
-      ""
-    ],
-    [
-      "GOSTR341112_256_WITH_MAGMA_MGM_S",
-      ""
-    ],
-    [
-      "KRB5_EXPORT_WITH_DES_CBC_40_MD5",
-      "FREAK DES POODLE LUCKY13"
-    ],
-    [
-      "KRB5_EXPORT_WITH_DES_CBC_40_SHA",
-      "FREAK DES POODLE LUCKY13"
-    ],
-    [
-      "KRB5_EXPORT_WITH_RC2_CBC_40_MD5",
-      "FREAK POODLE LUCKY13"
-    ],
-    [
-      "KRB5_EXPORT_WITH_RC2_CBC_40_SHA",
-      "FREAK POODLE LUCKY13"
-    ],
-    [
-      "KRB5_EXPORT_WITH_RC4_40_MD5",
-      "FREAK RC4"
-    ],
-    [
-      "KRB5_EXPORT_WITH_RC4_40_SHA",
-      "FREAK RC4"
-    ],
-    [
-      "KRB5_WITH_3DES_EDE_CBC_MD5",
-      "3DES POODLE SWEET32 LUCKY13"
-    ],
-    [
-      "KRB5_WITH_DES_CBC_MD5",
-      "DES POODLE LUCKY13"
-    ],
-    [
-      "KRB5_WITH_DES_CBC_SHA",
-      "DES POODLE LUCKY13"
-    ],
-    [
-      "KRB5_WITH_IDEA_CBC_MD5",
-      "POODLE LUCKY13"
-    ],
-    [
-      "KRB5_WITH_RC4_128_MD5",
-      "RC4"
-    ],
-    [
-      "KRB5_WITH_RC4_128_SHA",
-      "RC4"
-    ],
-    [
-      "NULL_WITH_NULL_NULL",
-      "NULL"
-    ],
-    [
-      "PSK_WITH_NULL_SHA",
-      "NULL"
-    ],
-    [
-      "PSK_WITH_NULL_SHA256",
-      "NULL"
-    ],
-    [
-      "PSK_WITH_NULL_SHA384",
-      "NULL"
-    ],
-    [
-      "PSK_WITH_RC4_128_SHA",
-      "RC4"
-    ],
-    [
-      "RSA_EXPORT_WITH_DES40_CBC_SHA",
-      "FREAK DES POODLE LUCKY13"
-    ],
-    [
-      "RSA_EXPORT_WITH_RC2_CBC_40_MD5",
-      "FREAK POODLE LUCKY13"
-    ],
-    [
-      "RSA_EXPORT_WITH_RC4_40_MD5",
-      "FREAK RC4"
-    ],
-    [
-      "RSA_PSK_WITH_NULL_SHA",
-      "NULL"
-    ],
-    [
-      "RSA_PSK_WITH_NULL_SHA256",
-      "NULL"
-    ],
-    [
-      "RSA_PSK_WITH_NULL_SHA384",
-      "NULL"
-    ],
-    [
-      "RSA_PSK_WITH_RC4_128_SHA",
-      "RC4"
-    ],
-    [
-      "RSA_WITH_DES_CBC_SHA",
-      "DES POODLE LUCKY13"
-    ],
-    [
-      "RSA_WITH_NULL_MD5",
-      "NULL"
-    ],
-    [
-      "RSA_WITH_NULL_SHA",
-      "NULL"
-    ],
-    [
-      "RSA_WITH_NULL_SHA256",
-      "NULL"
-    ],
-    [
-      "RSA_WITH_RC4_128_MD5",
-      "RC4"
-    ],
-    [
-      "RSA_WITH_RC4_128_SHA",
-      "RC4"
-    ],
-    [
-      "SHA256_SHA256",
-      ""
-    ],
-    [
-      "SHA384_SHA384",
-      ""
-    ],
-    [
-      "SM4_CCM_SM3",
-      ""
-    ],
-    [
-      "SM4_GCM_SM3",
-      ""
-    ]
-  ]
 }
