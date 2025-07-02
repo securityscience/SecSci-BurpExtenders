@@ -1,28 +1,29 @@
 ## 🛡️ SecSci SSL/TLS Scanner
 
-This BurpSuite extension integrates `nmap` SSL/TLS scanning directly into BurpSuite using Python.
+This BurpSuite extension integrates `sslscan` and `nmap` SSL/TLS scanning directly into BurpSuite using Python.
 It allows security testers to quickly identify SSL/TLS-related vulnerabilities like weak ciphers,
 outdated protocols, and certificate issues from within the BurpSuite interface.
 
 
 ## Features
 
-- Automatically scans HTTPS "In Scope" targets using `nmap --script ssl*,tls*`.
+- Automatically scans HTTPS "In Scope" targets using `sslscan` and `nmap --script ssl*,tls*`.
 - Displays results inside BurpSuite Issues.
 - Integrates seamlessly with the Extender API.
-- Auto-updates SLL issues from the repo.
+- Auto-updates SSL/TLS issues from the repo.
 
 
 ## Prerequisites
 
 Before installing the extension, ensure the following:
 
-| Component       | Required | Notes                                                                                    |
-|-----------------|----------|------------------------------------------------------------------------------------------|
-| BurpSuite       | ✅        | [Professional version](https://portswigger.net/burp/documentation/desktop/getting-started/download-and-install)                                                        |
-| Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`) |
-| Python (Jython) | ✅        | Must use Python 2.7 syntax                                                               |
-| NMap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                |
+| Component       | Required | Notes                                                                                                           |
+|-----------------|----------|-----------------------------------------------------------------------------------------------------------------|
+| BurpSuite       | ✅        | [Professional version](https://portswigger.net/burp/documentation/desktop/getting-started/download-and-install) |
+| Jython          | ✅        | [Download Jython](https://www.jython.org/download) (e.g., `jython-standalone-2.7.4.jar`)                        |
+| Python (Jython) | ✅        | Must use Python 2.7 syntax                                                                                      |
+| SSLScan         | ✅        | Ensure [`sslscan`](https://github.com/rbsec/sslscan/releases) is installed and added to PATH                                    |
+| NMap            | ✅        | Ensure [`nmap`](https://nmap.org/download) is installed and added to PATH                                       |
 
 
 ## Installation Steps
@@ -63,7 +64,12 @@ Once the extension is loaded in BurpSuite:
 - Visit an HTTPS page through **Proxy**, **Repeater**, or **Target**.
 - The extension will:
   - Detect in-scope HTTPS responses
-  - Automatically run:  
+  - Automatically run:
+    ```bash
+     sslscan --no-colour <host>:<port>
+    ```
+    or
+  
     ```bash
      nmap -sV --script ssl*,tls* -p <port> <host>
     ```
@@ -80,11 +86,12 @@ Once the extension is loaded in BurpSuite:
 
 ## Troubleshooting
 
-| Issue                             | Solution                                                    |
-|----------------------------------|-------------------------------------------------------------|
-| Extension fails to load          | Make sure you’re using Python 2.7 syntax and Jython is set  |
-| Nmap not found                   | Ensure `nmap` is installed and in system's PATH             |
-| No scan output shown             | Check **Extender → Output**, or use `print`/`callbacks.printOutput()` |
+| Issue                   | Solution                                                              |
+|-------------------------|-----------------------------------------------------------------------|
+| Extension fails to load | Make sure you’re using Python 2.7 syntax and Jython is set            |
+| SSLScan not found       | Ensure `sslscan` is installed and in system's PATH                    |
+| NMap not found          | Ensure `nmap` is installed and in system's PATH                       |
+| No scan output shown    | Check **Extender → Output**, or use `print`/`callbacks.printOutput()` |
 
 
 ## **SSL/TLS Test Domains**
